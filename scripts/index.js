@@ -4,39 +4,38 @@
 
 const enemyBoard = document.querySelector('.enemy-board')
 
-const enemyBoardTable = document.createElement('table')
-enemyBoard.appendChild(enemyBoardTable)
 
 for (let i = 0; i < 8; i++) {
-    let oneRow = document.createElement('tr')
+    let oneRow = document.createElement('div')
     oneRow.className = 'enemy-' + i
     for (let x = 0; x < 10; x++) {
         let tiles_letter = 'abcdefgh'
-        let oneTile = document.createElement('td')
+        let oneTile = document.createElement('div')
         oneTile.className = 'enemy-' + i + tiles_letter[x]
         oneTile.classList.add('enemy-tile')
+        oneTile.classList.add('tile')
 
 
         oneRow.appendChild(oneTile);
     }
-    enemyBoardTable.appendChild(oneRow)
+    enemyBoard.appendChild(oneRow)
 }
 
 const playerBoard = document.querySelector('.player-board')
-const playerBoardTable = document.createElement('table')
-playerBoard.appendChild(playerBoardTable)
+
 
 for (let i = 0; i < 8; i++) {
-    let oneRow = document.createElement('tr')
+    let oneRow = document.createElement('div')
     oneRow.className = 'player-' + i
     for (let x = 0; x < 10; x++) {
         let tiles_letter = 'abcdefgh'
-        let oneTile = document.createElement('td')
+        let oneTile = document.createElement('div')
         oneTile.className = 'player-' + i + tiles_letter[x]
         oneTile.classList.add('player-tile')
+        oneTile.classList.add('tile')
 
 
         oneRow.appendChild(oneTile);
     }
-    playerBoardTable.appendChild(oneRow)
+    playerBoard.appendChild(oneRow)
 }

@@ -53,41 +53,50 @@ body {
 }
 
 .game-container {
-    height: 600px;
-    width: 1200px;
-    background-color: lightblue;
+    height: 800px;
+    width: 1300px;
+    background-image: url('../assets/background.jpg');
     display: flex;
     align-items: center;
+    border: 5px;
+    border-color: white;
+    border-style: double;
+    border-radius: 20px;
     justify-content: space-between;
 }
 
 .dividing-line {
-    height: 600px;
-    width: 2px;
+    height: 700px;
+    width: 1px;
+    color: white;
+    opacity: 0.5;
 }
 
-.enemy-board {
-    padding: 20px;
+.board {
     display:flex;
+    padding:20px;
 }
-.enemy-tile {
+
+.tile {
+    margin:10px;
     height:50px;
     width: 50px;
-    background-color: rgb(147, 146, 146);
-    margin: 10px;
     border: 1px black solid;
-    
+    border-radius: 10px;
 }
 
-.player-board {
-    padding: 20px;
+.enemy-tile {
+    background-color: rgba(128, 128, 128, 0.415);
+}
 
+.enemy-tile:hover {
+    background-color: rgba(210, 211, 210, 0.504);
+    border: 1px rgb(212, 209, 208) solid;
+    transition: background-color .3s linear;
 }
-.player-tile {
-    height:50px;
-    width: 50px;
-    background-color: rgb(147, 146, 146);
-}
+
+
+
 
 
 
