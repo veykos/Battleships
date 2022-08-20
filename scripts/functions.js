@@ -7,3 +7,6 @@ export function getTileCoordinates(tileClicked) {
     return {'faction': tileFaction, 'coordinates': tileCoordinates}
 }
 
+export function distributeToProperFaction() {
+    
+}

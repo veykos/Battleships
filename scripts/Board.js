@@ -1,3 +1,5 @@
+import { Ship } from "./Ship.js";
+
 export class Board {
     constructor() {
         this.gamingTiles = [];
@@ -12,6 +14,26 @@ export class Board {
         }
     }   
 
-    
+    retrieveTileFromArray(tileCoordinatesObject) {
+        // function receives a coordinates object {col:,row:}
+        let col = tileCoordinatesObject.col;
+        let row = tileCoordinatesObject.row;
+        return this.gamingTiles[row][col]
+    }
+
+    markTile(tileCoordinatesObject) {
+        // function receives a coordinates object {col:,row:}
+        let col = tileCoordinatesObject.col;
+        let row = tileCoordinatesObject.row;
+        
+        this.gamingTiles[row][col] = 'X' // for now only changes tile to X
+    }
+
+    placeShip(tileCoordinatesObject) {
+        let col = tileCoordinatesObject.col;
+        let row = tileCoordinatesObject.row;
+        let new_ship = new Ship(row,col)
+        this.gamingTiles[row][col] = new_ship
+    }
 }
 

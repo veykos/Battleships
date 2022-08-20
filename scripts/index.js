@@ -1,4 +1,17 @@
-import { getTileCoordinates } from "./functions.js"
+
+import { getTileCoordinates } from "./functions.js";
+import { Board } from "./Board.js";
+
+// generate the 2 playing boards
+const enemyPlayingBoard = new Board();
+enemyPlayingBoard.generateBoard();
+console.log(enemyPlayingBoard)
+
+const playerPlayingBoard = new Board();
+playerPlayingBoard.generateBoard();
+console.log(playerPlayingBoard)
+
+
 
 // Select the enemy board and create the tile layout
 const enemyBoard = document.querySelector('.enemy-board')
@@ -38,3 +51,6 @@ for (let i = 0; i < 8; i++) {
     }
     playerBoard.appendChild(oneRow)
 }
+
+playerPlayingBoard.placeShip({'col':2,'row':3})
+console.log(playerPlayingBoard.retrieveTileFromArray({'col':2,'row':3}))
