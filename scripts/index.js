@@ -1,6 +1,7 @@
 
 import { getTileCoordinates } from "./functions.js";
 import { Board } from "./Board.js";
+import { AircraftCarrier, Ship, Battlecruiser } from "./Ship.js";
 
 // generate the 2 playing boards
 const enemyPlayingBoard = new Board();
@@ -52,5 +53,10 @@ for (let i = 0; i < 8; i++) {
     playerBoard.appendChild(oneRow)
 }
 
-playerPlayingBoard.placeShip({'col':2,'row':3})
+
+let one_battlecruiser = new Battlecruiser
+
+playerPlayingBoard.placeShip({'col':2,'row':3}, one_battlecruiser)
+console.log(playerPlayingBoard.retrieveTileFromArray({'col':2,'row':3}))
+playerPlayingBoard.markTile({'col':2,'row':3})
 console.log(playerPlayingBoard.retrieveTileFromArray({'col':2,'row':3}))
