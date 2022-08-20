@@ -95,6 +95,11 @@ body {
     transition: background-color .3s linear;
 }
 
+.player-tile:hover {
+    background-color: rgba(210, 211, 210, 0.504);
+    border: 1px rgb(212, 209, 208) solid;
+    transition: background-color .3s linear;
+}
 
 
 
