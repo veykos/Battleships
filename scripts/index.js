@@ -55,8 +55,12 @@ for (let i = 0; i < 8; i++) {
 
 
 let one_battlecruiser = new Battlecruiser
-
+let one_aircraftcarrier = new AircraftCarrier
+let one_ship = new Ship
+let second_aircraftcarrier = new AircraftCarrier
+second_aircraftcarrier.orientation = 'vertical'
+playerPlayingBoard.placeShip({'col':3,'row':7},second_aircraftcarrier)
 playerPlayingBoard.placeShip({'col':2,'row':3}, one_battlecruiser)
-console.log(playerPlayingBoard.retrieveTileFromArray({'col':2,'row':3}))
-playerPlayingBoard.markTile({'col':2,'row':3})
-console.log(playerPlayingBoard.retrieveTileFromArray({'col':2,'row':3}))
+playerPlayingBoard.placeShip({'col':5,'row':5}, one_aircraftcarrier);
+playerPlayingBoard.placeShip({'col':6,'row':4}, one_ship)
+console.log(playerPlayingBoard.gamingTiles)
