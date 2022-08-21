@@ -2,9 +2,10 @@
 import { Ship } from "./Ship.js";
 
 export class Board {
-    constructor() {
+    constructor(faction) {
         this.gamingTiles = [];
         this.ships = [];
+        this.faction = faction
     }
 
     generateBoard() {
@@ -85,7 +86,15 @@ export class Board {
         }
     }
 
+    arrayToTile(tileCoordinatesObject) {
+        let row = tileCoordinatesObject.row;
+        let col = tileCoordinatesObject.col;
+        return  document.querySelector('.' + this.faction + '-' + tileCoordinatesObject.row + tileCoordinatesObject.col)
+    }
 
+    colorTiles() {
+
+    }
 
 }
 

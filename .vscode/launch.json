@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Open index.html",
-            "file": "e:\\Ironhack\\week2\\day5\\ironhack-project-1\\index.html"
+            "url": "http://127.0.0.1:3000/index.html"
         }
     ]
 }

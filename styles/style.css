@@ -121,6 +121,10 @@ body {
     animation: zoom-in-out 1s ease-in-out;
 }
 
+.occupied {
+    background-color: rgb(58 74 183 / 71%);
+}
+
 
 
 

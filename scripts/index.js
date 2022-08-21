@@ -4,11 +4,11 @@ import { Board } from "./Board.js";
 import { AircraftCarrier, Ship, Battlecruiser } from "./Ship.js";
 
 // generate the 2 playing boards
-const enemyPlayingBoard = new Board();
+const enemyPlayingBoard = new Board('enemy');
 enemyPlayingBoard.generateBoard();
 console.log(enemyPlayingBoard)
 
-const playerPlayingBoard = new Board();
+const playerPlayingBoard = new Board('player');
 playerPlayingBoard.generateBoard();
 console.log(playerPlayingBoard)
 
@@ -54,13 +54,15 @@ for (let i = 0; i < 8; i++) {
 }
 
 
-let one_battlecruiser = new Battlecruiser
-let one_aircraftcarrier = new AircraftCarrier
-let one_ship = new Ship
-let second_aircraftcarrier = new AircraftCarrier
-second_aircraftcarrier.orientation = 'vertical'
-playerPlayingBoard.placeShip({'col':3,'row':7},second_aircraftcarrier)
-playerPlayingBoard.placeShip({'col':2,'row':3}, one_battlecruiser)
-playerPlayingBoard.placeShip({'col':5,'row':5}, one_aircraftcarrier);
-playerPlayingBoard.placeShip({'col':6,'row':4}, one_ship)
-console.log(playerPlayingBoard.gamingTiles)
+// let one_battlecruiser = new Battlecruiser
+// let one_aircraftcarrier = new AircraftCarrier
+// let one_ship = new Ship
+// let second_aircraftcarrier = new AircraftCarrier
+// second_aircraftcarrier.orientation = 'vertical'
+// playerPlayingBoard.placeShip({'col':3,'row':7},second_aircraftcarrier)
+// playerPlayingBoard.placeShip({'col':2,'row':3}, one_battlecruiser)
+// playerPlayingBoard.placeShip({'col':5,'row':5}, one_aircraftcarrier);
+// playerPlayingBoard.placeShip({'col':6,'row':4}, one_ship)
+// console.log(playerPlayingBoard.gamingTiles)
+
+console.log(enemyPlayingBoard.arrayToTile({'col':3,'row':2}))
