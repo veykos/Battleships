@@ -65,4 +65,4 @@ for (let i = 0; i < 8; i++) {
 // playerPlayingBoard.placeShip({'col':6,'row':4}, one_ship)
 // console.log(playerPlayingBoard.gamingTiles)
 
-console.log(enemyPlayingBoard.arrayToTile({'col':3,'row':2}))
+console.log(playerPlayingBoard.tileToArray({'col':3,'row':2}))

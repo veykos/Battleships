@@ -92,6 +92,12 @@ export class Board {
         return  document.querySelector('.' + this.faction + '-' + tileCoordinatesObject.row + tileCoordinatesObject.col)
     }
 
+    tileToArray(tileCoordinatesObject) {
+        let row = tileCoordinatesObject.row;
+        let col = tileCoordinatesObject.col;
+        return this.gamingTiles[row][col];
+    }
+
     colorTiles() {
 
     }
