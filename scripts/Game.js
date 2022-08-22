@@ -155,12 +155,19 @@ export class Game {
 
     checkForWin() {
         // check for win of player: 
-
+        const final_msg = document.querySelector('.final-message')
+        const game_container = document.querySelector('.game-container-wrapper')
         if (this.enemy.shipTiles === 0) {
+            final_msg.innerText = 'YOU WIN !'
+            final_msg.classList.remove('hidden')
+            game_container.classList.add('hidden')
             console.log('Player wins the GAMEEEE!!')
         }
 
         else if (this.player.shipTiles === 0) {
+            final_msg.innerText = 'YOU LOSE !'
+            final_msg.classList.remove('hidden')
+            game_container.classList.add('hidden')
             console.log('THE AI BEAT YOU HAHAHA')
         }
         

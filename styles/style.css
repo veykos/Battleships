@@ -66,9 +66,14 @@ body {
     font-family: 'Oswald', sans-serif;
     background-image: url('../assets/background.jpg');
 }
-.final-message{
-    position: fixed;
+.hidden {
+    display:none !important;
 }
+.final-message{
+    font-size: 10em;
+    color: #FFF;
+}
+
 .message {
     text-align: center;
     font-size: 1.5em;
