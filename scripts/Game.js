@@ -119,12 +119,22 @@ export class Game {
         for (let i = 0; i < enemy_tiles.length; i ++) {
             enemy_tiles[i].addEventListener('click', event => {
                 let tile = getTileCoordinates(event.target)
-                this.enemy.markTile(tile);
+                let player_shoot_result = this.enemy.markTile(tile);
+                if (player_shoot_result === 1) {
+                    player_msg.innerText = 'DIRECT HIT!'
+                } else {
+                    player_msg.innerText = 'CALIBRATE THE TURRETS!'
+                }
                 this.enemy.updateShipTiles()
                 this.enemy.colorTilesEnemy();
                 this.checkForWin();
                 // somehow put some Timeout here
-                this.aiShoot();
+                let enemy_shoot_result = this.aiShoot();
+                if (enemy_shoot_result === 1) {
+                    enemy_msg.innerText = 'THEY HIT OUR SHIP!'
+                } else {
+                    enemy_msg.innerText = 'THEY MISSED!'
+                }
                 this.player.updateShipTiles();
                 this.player.colorTilesPlayer();
                 this.checkForWin();
@@ -158,6 +168,7 @@ export class Game {
 
     aiShoot () {
         let result = this.player.markTile(this.player.getRandomCoordinates())
+        console.log(result)
         return result
     }
 

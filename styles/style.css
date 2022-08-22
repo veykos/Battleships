@@ -66,17 +66,20 @@ body {
     font-family: 'Oswald', sans-serif;
     background-image: url('../assets/background.jpg');
 }
-
+.final-message{
+    position: fixed;
+}
 .message {
     text-align: center;
     font-size: 1.5em;
 }
-
-.hit-messages div{
+.hit-messages {
     display: flex;
     justify-content: space-between;
+    width: 1200px;
+}
+.hit-messages div{
     font-size: 1.2em;
-    width: 1200px;;
 }
 .scoreboard {
     display: flex;
