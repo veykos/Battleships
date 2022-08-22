@@ -16,29 +16,20 @@ export class Game {
     
     start() {
 
-        // generating some ships for testing purposes
-        let one_battlecruiser = new Battlecruiser
-        let one_aircraftcarrier = new AircraftCarrier
-        let one_ship = new Ship
-        let second_aircraftcarrier = new AircraftCarrier
-        second_aircraftcarrier.orientation = 'vertical'
-        // end of generation of ships and place the ships on enemy board :)
         
         this.enemy.generateBoard();
         this.player.generateBoard();
-            
-        this.enemy.placeShip({'col':3,'row':7}, second_aircraftcarrier)
-        this.enemy.placeShip({'col':2,'row':3}, one_battlecruiser)
-        this.enemy.placeShip({'col':5,'row':5}, one_aircraftcarrier);
-        this.enemy.placeShip({'col':6,'row':4}, one_ship)
-        this.player.placeShip({'col':3,'row':7}, second_aircraftcarrier)
-
+        // generate the playing boards
+        this.enemy.placeFlotilia();
+        this.player.placeFlotilia();
+        this.enemy.updateShipTiles();
+        this.player.updateShipTiles();
+        // place enemy ships and our ships :)
+        
         //Should have 2 different working states - one for placing ships
         // one for shooting - difference will be the function that is
         // applied to a mouse click on a tile -> Overwriting the function
         // depending on the state?
-        this.enemy.updateShipTiles()
-        this.player.updateShipTiles()
 
         if (this.state = 'shooting') {
                 // creating the tiles and adding querySelector to enemyBoard
@@ -56,6 +47,11 @@ export class Game {
                             this.enemy.markTile(tile);
                             this.enemy.updateShipTiles()
                             this.enemy.colorTilesEnemy();
+                            this.checkForWin();
+                            // somehow put some Timeout here
+                            this.aiShoot();
+                            this.player.updateShipTiles();
+                            this.player.colorTilesPlayer();
                             this.checkForWin();
                             // CHECK FOR WIN?
                             // on click should get the tile coordinates from DOM;
@@ -108,6 +104,8 @@ export class Game {
     };
 
     aiShoot () {
+        this.player.markTile(this.player.getRandomCoordinates())
+        // later try to implement something for better AI
     }
 
 

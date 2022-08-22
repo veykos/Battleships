@@ -1,12 +1,18 @@
 
-import { Ship } from "./Ship.js";
+import { AircraftCarrier, Battlecruiser, Ship } from "./Ship.js";
 
 export class Board {
     constructor(faction) {
+        let aircraft1 = new AircraftCarrier('vertical');
+        let aircraft2 = new AircraftCarrier;
+        let bc1 = new Battlecruiser('vertical');
+        let bc2 = new Battlecruiser;
+        let ship1 = new Ship;
+        let ship2 = new Ship;
         this.gamingTiles = [];
-        this.ships = [];
+        this.ships = [aircraft1,aircraft2,bc1,bc2,ship1,ship2];
         this.faction = faction
-        this.shipTiles = 0;
+        this.shipTiles;
     }
 
     updateShipTiles() {
@@ -16,6 +22,8 @@ export class Board {
             temp_length += filtrd_arr.length
         }
         this.shipTiles = temp_length
+        let number_span = document.querySelector('#'+ this.faction + '-' + 'ships');
+        number_span.innerText = temp_length;
     }
 
     generateBoard() {
@@ -64,6 +72,7 @@ export class Board {
             for (let i = start_for_hor ; i < size + start_for_hor; i++) {
                 this.gamingTiles[row][i] = 1;
             }
+            return tileCoordinatesObject; // not sure if works
             
             // ADD LOGIC FOR VERTICAL CHECKING
         } else if (orientation === 'vertical') {
@@ -80,6 +89,7 @@ export class Board {
             for (let i = start_for_ver ; i < size + start_for_ver; i++) {
                 this.gamingTiles[i][col] = 1;
             }
+            return tileCoordinatesObject; // not sure if works
         }
     }
     
@@ -102,12 +112,11 @@ export class Board {
         let col = tileCoordinatesObject.col;
         let row = tileCoordinatesObject.row;
         if (this.gamingTiles[row][col] === 0) {
-            this.gamingTiles[row][col] = 'X0' // for now only MAKES IT X
-            // HERE FOR NOW IS .PLAYER FOR TESTING PURPOSES LATER SHOULD BE REPLACED WITH FACTION 
-            // document.querySelector('.'+ this.faction + '-' + + col + row).classList.add('hit-empty')
+            this.gamingTiles[row][col] = 'X0'
+            return 0 
         } else if (this.gamingTiles[row][col] === 1) {
-            this.gamingTiles[row][col] = 'X1' // for now only MAKES IT X
-            // document.querySelector('.'+ this.faction + '-'+ col + row).classList.add('hit-with-ship')
+            this.gamingTiles[row][col] = 'X1' 
+            return 1 // these return values should later be used to make AI
         } else if (this.gamingTiles[row][col] === 'X1' && this.gamingTiles[row][col] === 'X0') {
             // IF ITS ALREADY MARKED DO NOTHING
             return
@@ -154,6 +163,19 @@ export class Board {
         return {'col' : col, 'row' : row}
     }
     
+    placeFlotilia() {
+        for (let ship of this.ships) {
+            while(ship.col === undefined || ship.row === undefined) {
+                let ship_coord = this.placeShip(this.getRandomCoordinates(), ship)
+                if (ship_coord) {
+                    ship.col = ship_coord.col;
+                    ship.row = ship_coord.row;
+                }
+            }
+        }
+
+    }
+
+
 
 }
-

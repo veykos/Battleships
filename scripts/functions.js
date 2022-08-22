@@ -6,7 +6,3 @@ export function getTileCoordinates(tileClicked) {
     console.log(tileFaction,tileCoordinates)
     return tileCoordinates
 }
-
-export function distributeToProperFaction() {
-    
-}
