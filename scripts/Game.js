@@ -21,7 +21,7 @@ export class Game {
         this.player.generateBoard();
         // generate the playing boards
         this.enemy.placeFlotilia();
-        this.player.placeFlotilia();
+        // this.player.placeFlotilia();
         this.enemy.updateShipTiles();
         this.player.updateShipTiles();
         // place enemy ships and our ships :)
@@ -31,7 +31,50 @@ export class Game {
         // applied to a mouse click on a tile -> Overwriting the function
         // depending on the state?
 
-        if (this.state = 'shooting') {
+        if (this.state === 'placing') {
+            let acVert = document.querySelector('#AC1')
+            let acHor = document.querySelector('#AC2')
+            let bcVert = document.querySelector('#BC1')
+            let bcHor = document.querySelector('#BC2')
+            let sh1 = document.querySelector('#SH1')
+            let sh2 = document.querySelector('#SH2')
+
+            let selected_ship_div;
+            let selected_ship;
+
+            const ships_buttons = [acVert,acHor,bcVert,bcHor,sh1,sh2]
+            for (let i = 0; i < ships_buttons.length; i++) {
+                ships_buttons[i].addEventListener('click', event => {
+                    selected_ship_div = event.target;
+                    let selected_ship_div_idx = ships_buttons.indexOf(selected_ship_div)
+                    console.log(ships_buttons.indexOf(selected_ship_div))
+                    selected_ship = this.player.ships[selected_ship_div_idx]
+                })
+            }
+
+            const playerBoard = document.querySelector('.player-board')
+            for (let i = 0; i < 8; i++) {
+                let oneRow = document.createElement('div')
+                oneRow.className = 'player-' + i
+                for (let x = 0; x < 10; x++) {
+                    let oneTile = document.createElement('div')
+                    oneTile.className = 'player-' + i + x
+                    oneTile.classList.add('player-tile')
+                    oneTile.classList.add('tile')
+                    oneTile.addEventListener('click', event => {
+                        let tile_coord = getTileCoordinates(event.target);
+                        this.player.placeShip(tile_coord, selected_ship);
+                        this.player.updateShipTiles();
+                        this.player.colorTilesPlayer();
+                    })
+                    oneRow.appendChild(oneTile);
+                }
+                playerBoard.appendChild(oneRow)
+            }
+
+        }
+
+        if (this.state === 'shooting') {
                 // creating the tiles and adding querySelector to enemyBoard
                 const enemyBoard = document.querySelector('.enemy-board')
                 for (let i = 0; i < 8; i++) {
@@ -90,6 +133,8 @@ export class Game {
         }
     };
     
+
+
     checkForWin() {
         // check for win of player: 
 

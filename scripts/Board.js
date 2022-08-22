@@ -3,14 +3,14 @@ import { AircraftCarrier, Battlecruiser, Ship } from "./Ship.js";
 
 export class Board {
     constructor(faction) {
-        let aircraft1 = new AircraftCarrier('vertical');
+        let aircraft1vert = new AircraftCarrier('vertical');
         let aircraft2 = new AircraftCarrier;
-        let bc1 = new Battlecruiser('vertical');
+        let bc1vert = new Battlecruiser('vertical');
         let bc2 = new Battlecruiser;
         let ship1 = new Ship;
         let ship2 = new Ship;
         this.gamingTiles = [];
-        this.ships = [aircraft1,aircraft2,bc1,bc2,ship1,ship2];
+        this.ships = [aircraft1vert,aircraft2,bc1vert,bc2,ship1,ship2];
         this.faction = faction
         this.shipTiles;
     }

@@ -69,6 +69,12 @@ body {
     display: flex;
     justify-content: space-between;
     width: 1200px;
+    margin: 20px 0;
+}
+
+.ship-holder {
+    display: flex;
+    justify-content: space-around;
 }
 .game-board {
     background: rgb(162, 162, 165);
