@@ -6,6 +6,16 @@ export class Board {
         this.gamingTiles = [];
         this.ships = [];
         this.faction = faction
+        this.shipTiles = 0;
+    }
+
+    updateShipTiles() {
+        let temp_length = 0;
+        for (let row of this.gamingTiles){
+            let filtrd_arr = row.filter(tile => tile === 1)
+            temp_length += filtrd_arr.length
+        }
+        this.shipTiles = temp_length
     }
 
     generateBoard() {

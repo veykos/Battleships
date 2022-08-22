@@ -1,9 +1,10 @@
 import { Board } from "./Board.js"
-import { getTileCoordinates } from "./functions";
+import { getTileCoordinates } from "./functions.js";
+import { AircraftCarrier, Ship, Battlecruiser } from "./Ship.js";
 
 
 
-class Game {
+export class Game {
     constructor() {
         const enemyPlayingBoard = new Board('enemy');
         const playerPlayingBoard = new Board('player');
@@ -12,14 +13,34 @@ class Game {
         this.states = ['placing','shooting'];
         this.state = this.states[0]
     }
-
+    
     start() {
+
+        // generating some ships for testing purposes
+        let one_battlecruiser = new Battlecruiser
+        let one_aircraftcarrier = new AircraftCarrier
+        let one_ship = new Ship
+        let second_aircraftcarrier = new AircraftCarrier
+        second_aircraftcarrier.orientation = 'vertical'
+        // end of generation of ships and place the ships on enemy board :)
+        
+        this.enemy.generateBoard();
+        this.player.generateBoard();
+            
+        this.enemy.placeShip({'col':3,'row':7}, second_aircraftcarrier)
+        this.enemy.placeShip({'col':2,'row':3}, one_battlecruiser)
+        this.enemy.placeShip({'col':5,'row':5}, one_aircraftcarrier);
+        this.enemy.placeShip({'col':6,'row':4}, one_ship)
+        this.player.placeShip({'col':3,'row':7}, second_aircraftcarrier)
+
         //Should have 2 different working states - one for placing ships
         // one for shooting - difference will be the function that is
         // applied to a mouse click on a tile -> Overwriting the function
         // depending on the state?
+        this.enemy.updateShipTiles()
+        this.player.updateShipTiles()
+
         if (this.state = 'shooting') {
-            while (true) {
                 // creating the tiles and adding querySelector to enemyBoard
                 const enemyBoard = document.querySelector('.enemy-board')
                 for (let i = 0; i < 8; i++) {
@@ -32,7 +53,11 @@ class Game {
                         oneTile.classList.add('tile')
                         oneTile.addEventListener('click', event => {
                             let tile = getTileCoordinates(event.target)
-                            this.enemy.markTile(tile)
+                            this.enemy.markTile(tile);
+                            this.enemy.updateShipTiles()
+                            this.enemy.colorTilesEnemy();
+                            this.checkForWin();
+                            // CHECK FOR WIN?
                             // on click should get the tile coordinates from DOM;
                             // then mark the tile
                         })
@@ -65,11 +90,22 @@ class Game {
                 this.player.colorTilesPlayer();
                 // This will color the tiles in proper color after any action has happened
 
-            }
+            
         }
     };
     
-    checkForWin();
+    checkForWin() {
+        // check for win of player: 
+
+        if (this.enemy.shipTiles === 0) {
+            console.log('Player wins the GAMEEEE!!')
+        }
+
+        else if (this.player.shipTiles === 0) {
+            console.log('THE AI BEAT YOU HAHAHA')
+        }
+        
+    };
 
 
 }
