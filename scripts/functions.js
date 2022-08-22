@@ -4,7 +4,7 @@ export function getTileCoordinates(tileClicked) {
     const tileFaction = temp_array[0]
     const tileCoordinates = {'col': temp_array[1][0], 'row':temp_array[1][1]}
     console.log(tileFaction,tileCoordinates)
-    return {'faction': tileFaction, 'coordinates': tileCoordinates}
+    return {tileCoordinates}
 }
 
 export function distributeToProperFaction() {

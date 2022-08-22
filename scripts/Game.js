@@ -1,4 +1,6 @@
 import { Board } from "./Board.js"
+import { getTileCoordinates } from "./functions";
+
 
 
 class Game {
@@ -29,14 +31,17 @@ class Game {
                         oneTile.classList.add('enemy-tile')
                         oneTile.classList.add('tile')
                         oneTile.addEventListener('click', event => {
-                            getTileCoordinates(event.target)
-                            // Return tile faction and coordinates on click 
+                            let tile = getTileCoordinates(event.target)
+                            this.enemy.markTile(tile)
+                            // on click should get the tile coordinates from DOM;
+                            // then mark the tile
                         })
 
                         oneRow.appendChild(oneTile);
                     }
                     enemyBoard.appendChild(oneRow)
                 }
+
                 //creating the tiles and adding querySelector to playerBoard
                 // do we even need querySelector for playerBoard?
                 const playerBoard = document.querySelector('.player-board')
@@ -48,16 +53,17 @@ class Game {
                         oneTile.className = 'player-' + i + x
                         oneTile.classList.add('player-tile')
                         oneTile.classList.add('tile')
-                        oneTile.addEventListener('click', event => {
-                            getTileCoordinates(event.target)
-                            // Return tile faction and coordinates on click 
-                        })
-
                         oneRow.appendChild(oneTile);
                     }
                     playerBoard.appendChild(oneRow)
                 }
-
+                // end of tile creation and tiles event listeners
+                //
+                //SOMEWHERE HERE THE AI SHOULD ATTACK :#
+                //
+                this.enemy.colorTilesEnemy();
+                this.player.colorTilesPlayer();
+                // This will color the tiles in proper color after any action has happened
 
             }
         }
