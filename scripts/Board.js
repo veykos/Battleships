@@ -148,6 +148,11 @@ export class Board {
 
     }
 
+    getRandomCoordinates() {
+        let row = Math.floor(Math.random() * this.gamingTiles.length)
+        let col = Math.floor(Math.random() * this.gamingTiles[0].length)
+        return {'col' : col, 'row' : row}
+    }
     
 
 }

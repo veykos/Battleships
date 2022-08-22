@@ -107,5 +107,8 @@ export class Game {
         
     };
 
+    aiShoot () {
+    }
+
 
 }
