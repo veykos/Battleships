@@ -24,20 +24,7 @@ export class Board {
         return this.gamingTiles[row][col]
     }
 
-    markTile(tileCoordinatesObject) {
-        // function receives a coordinates object {col:,row:}
-        let col = tileCoordinatesObject.col;
-        let row = tileCoordinatesObject.row;
-        if (this.gamingTiles[row][col] === 0) {
-            this.gamingTiles[row][col] = 'X' // for now only changes tile to X
-            // HERE FOR NOW IS .PLAYER FOR TESTING PURPOSES LATER SHOULD BE REPLACED WITH FACTION 
-            document.querySelector('.player'+ + col + row).classList.add('hit-empty')
-        } else if (this.gamingTiles[row][col] === 1) {
-            this.gamingTiles[row][col] = 'X' // for now only changes tile to X
-            document.querySelector('.player-'+ col + row).classList.add('hit-with-ship')
-        }
-    }
-
+    
     placeShip(tileCoordinatesObject, ship) {
         let col = tileCoordinatesObject.col;
         let row = tileCoordinatesObject.row;
@@ -67,7 +54,7 @@ export class Board {
             for (let i = start_for_hor ; i < size + start_for_hor; i++) {
                 this.gamingTiles[row][i] = 1;
             }
-
+            
             // ADD LOGIC FOR VERTICAL CHECKING
         } else if (orientation === 'vertical') {
             // check if row will be out of bound !! 
@@ -85,22 +72,73 @@ export class Board {
             }
         }
     }
-
+    
     arrayToTile(tileCoordinatesObject) {
         let row = tileCoordinatesObject.row;
         let col = tileCoordinatesObject.col;
-        return  document.querySelector('.' + this.faction + '-' + tileCoordinatesObject.row + tileCoordinatesObject.col)
+        return  document.querySelector('.' + this.faction + '-' + col + row)
     }
-
+    
     tileToArray(tileCoordinatesObject) {
         let row = tileCoordinatesObject.row;
         let col = tileCoordinatesObject.col;
         return this.gamingTiles[row][col];
     }
+    
+    markTile(tileCoordinatesObject) {
+        // LOGIC IS IF IT WAS EMPTY NOW ITS 'X0' - X FOR MARKED 0 FOR EMPTY
+        // IF IT WAS WITH A SHIP  ITS 'X1'- X FOR MARKER 1 FOR SHIP
+        // function receives a coordinates object {col:,row:}
+        let col = tileCoordinatesObject.col;
+        let row = tileCoordinatesObject.row;
+        if (this.gamingTiles[row][col] === 0) {
+            this.gamingTiles[row][col] = 'X0' // for now only MAKES IT X
+            // HERE FOR NOW IS .PLAYER FOR TESTING PURPOSES LATER SHOULD BE REPLACED WITH FACTION 
+            // document.querySelector('.'+ this.faction + '-' + + col + row).classList.add('hit-empty')
+        } else if (this.gamingTiles[row][col] === 1) {
+            this.gamingTiles[row][col] = 'X1' // for now only MAKES IT X
+            // document.querySelector('.'+ this.faction + '-'+ col + row).classList.add('hit-with-ship')
+        } else if (this.gamingTiles[row][col] === 'X1' && this.gamingTiles[row][col] === 'X0') {
+            // IF ITS ALREADY MARKED DO NOTHING
+            return
+        }
+    }
 
-    colorTiles() {
+
+    colorTilesPlayer() {
+        for (let row = 0; row < this.gamingTiles.length; row ++) {
+            for (let col = 0; col < this.gamingTiles[row].length; col ++) {
+                let coordinates_obj = {'col' : col, 'row' : row};
+                let selected_tile = this.arrayToTile(coordinates_obj)
+                if (this.gamingTiles[row][col] === 1) {
+                    selected_tile.classList.add('occupied')}
+                if (this.gamingTiles[row][col] === 'X1') 
+                    selected_tile.classList.add('hit-empty')
+                if (this.gamingTiles[row][col] === 'X0') {
+                    selected_tile.classList.add('hit-with-ship')
+                }
+                
+            }
+        }
+    }
+
+    colorTilesEnemy() {
+        for (let row = 0; row < this.gamingTiles.length; row ++) {
+            for (let col = 0; col < this.gamingTiles[row].length; col ++) {
+                let coordinates_obj = {'col' : col, 'row' : row};
+                let selected_tile = this.arrayToTile(coordinates_obj)
+                 if (this.gamingTiles[row][col] === 'X1') {
+                    selected_tile.classList.add('hit-with-ship')
+                } else if (this.gamingTiles[row][col] === 'X0') {
+                    selected_tile.classList.add('hit-empty')
+                }
+            }
+        }
+        
 
     }
+
+    
 
 }
 
