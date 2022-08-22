@@ -65,6 +65,10 @@ body {
     height: 100vh;
 }
 
+.message {
+    text-align: center;
+    margin: 20px 0;
+}
 .scoreboard {
     display: flex;
     justify-content: space-between;

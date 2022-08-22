@@ -51,7 +51,24 @@ export class Game {
                     selected_ship = this.player.ships[selected_ship_div_idx]
                 })
             }
+            
+            // creating the enemy tiles
+            const enemyBoard = document.querySelector('.enemy-board')
+            for (let i = 0; i < 8; i++) {
+                let oneRow = document.createElement('div')
+                oneRow.className = 'enemy-' + i
+                for (let x = 0; x < 10; x++) {
+                    let oneTile = document.createElement('div')
+                    oneTile.className = 'enemy-' + i + x
+                    oneTile.classList.add('enemy-tile')
+                    oneTile.classList.add('tile')
+                    oneRow.appendChild(oneTile);
+                }
+                enemyBoard.appendChild(oneRow)
+            }
 
+            // creating the player board and adding event listener
+            // and logic for placing the ships
             const playerBoard = document.querySelector('.player-board')
             for (let i = 0; i < 8; i++) {
                 let oneRow = document.createElement('div')
@@ -62,15 +79,32 @@ export class Game {
                     oneTile.classList.add('player-tile')
                     oneTile.classList.add('tile')
                     oneTile.addEventListener('click', event => {
+                        let all_ships_positioned = false;
                         let tile_coord = getTileCoordinates(event.target);
-                        this.player.placeShip(tile_coord, selected_ship);
+                        if (selected_ship.col === undefined) {
+                            let ship_coord = this.player.placeShip(tile_coord, selected_ship);
+                            if (ship_coord) {
+                                selected_ship.col = ship_coord.col
+                                selected_ship.row = ship_coord.row
+                                selected_ship_div.style.display = 'none'
+                            }
+                        }
                         this.player.updateShipTiles();
                         this.player.colorTilesPlayer();
+                        let ships_positions = this.player.ships.map(ship => ship.col)
+                        if (ships_positions.every(ele => ele !== undefined)) {
+                            this.state = 'shooting'
+                        }
+                        console.log(ships_positions)
+                        
+
                     })
                     oneRow.appendChild(oneTile);
                 }
                 playerBoard.appendChild(oneRow)
             }
+
+
 
         }
 

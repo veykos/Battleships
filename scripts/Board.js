@@ -63,21 +63,32 @@ export class Board {
         // make the logic for placing the ship and checking if position is valid 
         if (orientation === 'horizontal') {
             // check if any position is already occupied or out of bounds
-            for (let i = start_for_hor ; i < size + start_for_hor; i++) {
-                if (this.gamingTiles[row][i] === 1 || this.gamingTiles[row][i] === undefined) {
+            if (size === 1) {
+                if (this.gamingTiles[row][col] === 1) {
                     return console.log('Invalid')
-                    // FOR NOW CONSOLE LOG LATER FIX
-                } 
+                }
+            } else {
+                for (let i = start_for_hor ; i < size + start_for_hor; i++) {
+                    if (this.gamingTiles[row][i] === 1 || this.gamingTiles[row][i] === undefined) {
+                        return console.log('Invalid')
+                        // FOR NOW CONSOLE LOG LATER FIX
+                    } 
+                }
             }
-            for (let i = start_for_hor ; i < size + start_for_hor; i++) {
-                this.gamingTiles[row][i] = 1;
+            if (size === 1) {
+                this.gamingTiles[row][col] = 1;
+            } else {
+                for (let i = start_for_hor ; i < size + start_for_hor; i++) {
+                    this.gamingTiles[row][i] = 1;
+                }
+
             }
             return tileCoordinatesObject; // not sure if works
             
             // ADD LOGIC FOR VERTICAL CHECKING
         } else if (orientation === 'vertical') {
             // check if row will be out of bound !! 
-            if (start_for_ver < 0 || row + (size-1) / 2 > 9) {
+            if (start_for_ver < 0 || (row + ((size-1) / 2)) > 9) {
                 return console.log('Invalid')
             }
             for (let i = start_for_ver ; i < size + start_for_ver; i++) {
@@ -89,6 +100,7 @@ export class Board {
             for (let i = start_for_ver ; i < size + start_for_ver; i++) {
                 this.gamingTiles[i][col] = 1;
             }
+            
             return tileCoordinatesObject; // not sure if works
         }
     }
