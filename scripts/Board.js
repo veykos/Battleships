@@ -100,8 +100,8 @@ export class Board {
             for (let i = start_for_ver ; i < size + start_for_ver; i++) {
                 this.gamingTiles[i][col] = 1;
             }
-            
-            return tileCoordinatesObject; // not sure if works
+
+            return tileCoordinatesObject;
         }
     }
     

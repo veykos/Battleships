@@ -64,18 +64,25 @@ body {
     align-items: center;
     height: 100vh;
     font-family: 'Oswald', sans-serif;
-    padding: 10px 0;
+    background-image: url('../assets/background.jpg');
 }
 
 .message {
     text-align: center;
-    margin: 20px 0;
+    font-size: 1.5em;
+}
+
+.hit-messages div{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2em;
+    width: 1200px;;
 }
 .scoreboard {
     display: flex;
     justify-content: space-between;
     width: 1200px;
-    margin-top: 20px;
+    font-size: 1.2em;
 }
 
 .ship-holder {
@@ -94,7 +101,6 @@ body {
     height: 1.5em;
     text-align: center;
     border: 1px solid white;
-    padding: 5px;
 }
 .ship-holder div:hover {
     cursor: pointer;
@@ -110,7 +116,6 @@ body {
 }
 
 .game-board {
-    background: rgb(162, 162, 165);
     width: 1200px;
     padding: 30px;
     margin-bottom: 20px;
@@ -123,13 +128,17 @@ body {
     color: #FFF;
     font-size: 2em;
     justify-content: space-between;
+    gap: 20px;
 
 }
-
+.game-container-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .game-container {
-    height: 800px;
     width: 1300px;
-    background-image: url('../assets/background.jpg');
     display: flex;
     align-items: center;
     border: 5px;

@@ -9,24 +9,28 @@
     <style>@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap');</style>
 </head>
 <body>
-    <div class="game-board">
-        <div class="message">
-            AAAAAAAAAAAAAAAAAAAAAAAAAAaaaaaaaaaaaaaaaaaa
-        </div>
-        <div class="ship-holder">
-            <div id="AC1">AIRCRAFT CARRIER VERTICAL</div>
-            <div id="AC2">AIRCRAFT CARRIER</div>
-            <div id="BC1">BATTLECRUISER VERTICAL</div>
-            <div id="BC2">BATTLECRUISER</div>
-            <div id="SH1">PATROL BOAT</div>
-            <div id="SH2">PATROL BOAT</div>
-        </div>
-        <div class="scoreboard">
-            <h3>ENEMY SHIP TILES LEFT: <span id="enemy-ships"></span></h3>
-            <h3>PLAYER SHIP TILES LEFT: <span id="player-ships"></span></h3>
-        </div>
-    </div>
     <div class="game-container-wrapper">
+        <div class="game-board">
+            <div class="message">
+                AAAAAAAAAAAAAAAAAAAAAAAAAAaaaaaaaaaaaaaaaaaa
+            </div>
+            <div class="ship-holder">
+                <div id="AC1">AIRCRAFT CARRIER VERTICAL</div>
+                <div id="AC2">AIRCRAFT CARRIER</div>
+                <div id="BC1">BATTLECRUISER VERTICAL</div>
+                <div id="BC2">BATTLECRUISER</div>
+                <div id="SH1">PATROL BOAT</div>
+                <div id="SH2">PATROL BOAT</div>
+            </div>
+            <div class="hit-messages">
+                <div class="enemy-msg"></div>
+                <div class="player-msg"></div>
+            </div>
+            <div class="scoreboard">
+                <h3>ENEMY SHIP TILES LEFT: <span id="enemy-ships"></span></h3>
+                <h3>PLAYER SHIP TILES LEFT: <span id="player-ships"></span></h3>
+            </div>
+        </div>
         <div class="game-container">    
             <div class="enemy-board board">
                 
