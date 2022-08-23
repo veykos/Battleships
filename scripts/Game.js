@@ -1,4 +1,5 @@
 import { Board } from "./Board.js"
+import { Bot } from "./Bot.js";
 import { getTileCoordinates } from "./functions.js";
 import { AircraftCarrier, Ship, Battlecruiser } from "./Ship.js";
 
@@ -7,12 +8,15 @@ import { AircraftCarrier, Ship, Battlecruiser } from "./Ship.js";
 export class Game {
     constructor() {
         const enemyPlayingBoard = new Board('enemy');
-        const playerPlayingBoard = new Board('player');
+        const playerPlayingBoard = new Board('player');        
         this.enemy = enemyPlayingBoard;
         this.player = playerPlayingBoard;
         this.states = ['placing','shooting'];
         this.state = this.states[0]
         this.message_board = document.querySelector('.message')
+        const botAi = new Bot();
+        this.botAI = botAi;
+        this.botAI.positionsShot = ['{"row":3,"col":3}']
     }
     
     start() {
@@ -129,6 +133,8 @@ export class Game {
                 this.enemy.colorTilesEnemy();
                 this.checkForWin();
                 // somehow put some Timeout here
+                
+                //
                 let enemy_shoot_result = this.aiShoot();
                 if (enemy_shoot_result === 1) {
                     enemy_msg.innerText = 'THEY HIT OUR SHIP!'
