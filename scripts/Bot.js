@@ -68,7 +68,7 @@ export class Bot {
                         col += 1
                     }
                 }
-                coordinates = {'col':col,'row':row}
+                coordinates = this.checkCoordinates({'col':col,'row':row},board)
             } else {
                 coordinates = this.checkCoordinates(board.getRandomCoordinates(),board)
             }
@@ -81,6 +81,7 @@ export class Bot {
             let resultOfShoot = board.markTile(coordinates);
             this.addShotPosition(coordinates,resultOfShoot)
 
+            return resultOfShoot;
     }
 
 }

@@ -129,7 +129,7 @@ export class Board {
         } else if (this.gamingTiles[row][col] === 1) {
             this.gamingTiles[row][col] = 'X1' 
             return 1 // these return values should later be used to make AI
-        } else if (this.gamingTiles[row][col] === 'X1' && this.gamingTiles[row][col] === 'X0') {
+        } else if (this.gamingTiles[row][col] === 'X1' || this.gamingTiles[row][col] === 'X0') {
             // IF ITS ALREADY MARKED DO NOTHING
             return
         }

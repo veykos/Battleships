@@ -26,7 +26,7 @@ export class Game {
         this.player.generateBoard();
         // generate the playing boards
         this.enemy.placeFlotilia();
-        this.player.placeFlotilia();
+        //this.player.placeFlotilia();
         // COMMENT FOR NORMAL GAMEPLAY
         this.enemy.updateShipTiles();
         this.player.updateShipTiles();
@@ -134,20 +134,16 @@ export class Game {
                 this.enemy.colorTilesEnemy();
                 this.checkForWin();
                 // somehow put some Timeout here
-                this.botAI.shoot(this.player)
-                // UNCOMMENT FOR NORMAL GAME :D
-                // let enemy_shoot_result = this.aiShoot();
-                // if (enemy_shoot_result === 1) {
-                //     enemy_msg.innerText = 'THEY HIT OUR SHIP!'
-                // } else {
-                //     enemy_msg.innerText = 'THEY MISSED!'
-                // }
+                let enemy_shoot_result = this.botAI.shoot(this.player)
+                if (enemy_shoot_result === 1) {
+                    enemy_msg.innerText = 'THEY HIT OUR SHIP!'
+                } else {
+                    enemy_msg.innerText = 'THEY MISSED!'
+                }
                 this.player.updateShipTiles();
                 this.player.colorTilesPlayer();
                 this.checkForWin();
-                // CHECK FOR WIN?
-                // on click should get the tile coordinates from DOM;
-                // then mark the tile
+
             
             })
         }
