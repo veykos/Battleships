@@ -43,26 +43,26 @@ export class Bot {
             if (this.lastShotHit === 1) {
                 let randomDirection = Math.floor(Math.random() * 4)
                 if (randomDirection === 0) {
-                    if (checkIfProperRow(row-1)) {   
+                    if (checkIfProperRow(row-1)=== true) {   
                         row -= 1;
                     } else {
                         row += 1
                     }
                     
                 } else if (randomDirection === 1) {
-                    if (checkIfProperCol(col+1)) {   
+                    if (checkIfProperCol(col+1) === true) {   
                         col += 1;
                     } else {
                         col -= 1
                     }
                 } else if (randomDirection === 2) {
-                    if (checkIfProperRow(row+1)) {   
+                    if (checkIfProperRow(row+1)=== true)  {   
                         row += 1;
                     } else {
                         row -= 1
                     }
                 } else {
-                    if (checkIfProperCol(col-1)) {   
+                    if (checkIfProperCol(col-1)=== true) {   
                         col -= 1;
                     } else {
                         col += 1
@@ -72,10 +72,14 @@ export class Bot {
             } else {
                 coordinates = this.checkCoordinates(board.getRandomCoordinates(),board)
             }
+        } else {
+            coordinates = this.checkCoordinates(board.getRandomCoordinates(),board)
+        }
+            
+            
             // shoot?
             let resultOfShoot = board.markTile(coordinates);
             this.addShotPosition(coordinates,resultOfShoot)
-        } 
 
     }
 
