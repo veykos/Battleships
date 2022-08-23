@@ -11,5 +11,3 @@ game.start()
 
 
 
-console.log(game.player,game.enemy)
-console.log(game)

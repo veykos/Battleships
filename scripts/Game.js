@@ -49,7 +49,6 @@ export class Game {
             ships_buttons[i].addEventListener('click', event => {
                 selected_ship_div = event.target;
                 let selected_ship_div_idx = ships_buttons.indexOf(selected_ship_div)
-                console.log(ships_buttons.indexOf(selected_ship_div))
                 selected_ship = this.player.ships[selected_ship_div_idx]
                 this.message_board.innerText = `${selected_ship_div.innerText} - ${selected_ship.orientation.toUpperCase()}`
             })
@@ -179,13 +178,11 @@ export class Game {
             final_msg.innerText = 'YOU WIN !'
             final_msg.classList.remove('hidden')
             game_container.classList.add('hidden')
-            console.log('Player wins the GAMEEEE!!')
         }
         else if (this.player.shipTiles === 0) {
             final_msg.innerText = 'YOU LOSE !'
             final_msg.classList.remove('hidden')
             game_container.classList.add('hidden')
-            console.log('THE AI BEAT YOU HAHAHA')
         }
     };
 }
