@@ -128,7 +128,13 @@ export class Game {
     shoot() {
         const enemy_msg = document.querySelector('.enemy-msg')
         const player_msg = document.querySelector('.player-msg')
-
+        // REMOVE THE PLAYER TILES EVENTLISTENERS BY CLONING THEM
+        // THIS FIXES THE MULTISHOT BUG
+        const playerTiles = document.querySelectorAll('.player-tile')
+        for (let i = 0; i < playerTiles.length; i++) {
+            playerTiles[i].replaceWith(playerTiles[i].cloneNode(true))
+        }
+        ////
         this.message_board.innerText = 'DESTROY THE ENEMY FLEET!'
         // creating the tiles and adding querySelector to enemyBoard
         let enemy_tiles = document.querySelectorAll('.enemy-tile')
