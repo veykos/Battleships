@@ -134,27 +134,28 @@ export class Game {
                 this.enemy.colorTilesEnemy();
                 this.checkForWin();
                 // somehow put some Timeout here
+
+        
                 let enemy_shoot_result = this.botAI.shoot(this.player)
-                if (enemy_shoot_result === 1) {
-                    enemy_msg.innerText = 'THEY HIT OUR SHIP!'
-                } else {
-                    enemy_msg.innerText = 'THEY MISSED!'
-                }
-                this.player.updateShipTiles();
-                this.player.colorTilesPlayer();
-                this.checkForWin();
+                
+                setTimeout(() => {
+                    this.player.updateShipTiles()
+                    if (enemy_shoot_result === 1) {
+                        enemy_msg.innerText = 'THEY HIT OUR SHIP!'
+                    } else {
+                        enemy_msg.innerText = 'THEY MISSED!'
+                    }
+                }, 900)
+                setTimeout(() => this.player.colorTilesPlayer(), 1100)
+                setTimeout(() => this.checkForWin(), 1300)
+                // this.player.updateShipTiles();
+                // this.player.colorTilesPlayer();
+                // this.checkForWin();
 
             
             })
         }
     }
-        
-        
-    
-        
-
-
-
 
     checkForWin() {
         // check for win of player: 
@@ -166,21 +167,11 @@ export class Game {
             game_container.classList.add('hidden')
             console.log('Player wins the GAMEEEE!!')
         }
-
         else if (this.player.shipTiles === 0) {
             final_msg.innerText = 'YOU LOSE !'
             final_msg.classList.remove('hidden')
             game_container.classList.add('hidden')
             console.log('THE AI BEAT YOU HAHAHA')
         }
-        
     };
-
-    aiShoot () {
-        let result = this.player.markTile(this.player.getRandomCoordinates())
-        console.log(result)
-        return result
-    }
-
-
 }
