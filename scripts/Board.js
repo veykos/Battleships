@@ -144,9 +144,9 @@ export class Board {
                 if (this.gamingTiles[row][col] === 1) {
                     selected_tile.classList.add('occupied')}
                 if (this.gamingTiles[row][col] === 'X1') 
-                    selected_tile.classList.add('hit-empty')
-                if (this.gamingTiles[row][col] === 'X0') {
                     selected_tile.classList.add('hit-with-ship')
+                if (this.gamingTiles[row][col] === 'X0') {
+                    selected_tile.classList.add('hit-empty')
                 }
                 
             }
