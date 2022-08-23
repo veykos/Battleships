@@ -133,11 +133,8 @@ export class Game {
                 this.enemy.updateShipTiles()
                 this.enemy.colorTilesEnemy();
                 this.checkForWin();
-                // somehow put some Timeout here
-
-        
                 let enemy_shoot_result = this.botAI.shoot(this.player)
-                
+                // Timeout the coloring and checking of result
                 setTimeout(() => {
                     this.player.updateShipTiles()
                     if (enemy_shoot_result === 1) {

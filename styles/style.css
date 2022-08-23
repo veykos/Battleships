@@ -125,6 +125,8 @@ body {
 
 .game-board {
     width: 1200px;
+    min-height: 234px;
+    /* REMOVE MIN HEIGHT IF YOU WANT IT TO RESIZE */
     padding: 30px;
     margin-bottom: 20px;
     border-radius: 5px;
