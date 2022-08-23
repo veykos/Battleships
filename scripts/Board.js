@@ -3,9 +3,9 @@ import { AircraftCarrier, Battlecruiser, Ship } from "./Ship.js";
 
 export class Board {
     constructor(faction) {
-        let aircraft1vert = new AircraftCarrier('vertical');
+        let aircraft1vert = new AircraftCarrier;
         let aircraft2 = new AircraftCarrier;
-        let bc1vert = new Battlecruiser('vertical');
+        let bc1vert = new Battlecruiser;
         let bc2 = new Battlecruiser;
         let ship1 = new Ship;
         let ship2 = new Ship;

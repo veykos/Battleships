@@ -48,12 +48,23 @@ export class Game {
         for (let i = 0; i < ships_buttons.length; i++) {
             ships_buttons[i].addEventListener('click', event => {
                 selected_ship_div = event.target;
-                this.message_board.innerText = `SELECTED SHIP: ${selected_ship_div.innerText}`
                 let selected_ship_div_idx = ships_buttons.indexOf(selected_ship_div)
                 console.log(ships_buttons.indexOf(selected_ship_div))
                 selected_ship = this.player.ships[selected_ship_div_idx]
+                this.message_board.innerText = `${selected_ship_div.innerText} - ${selected_ship.orientation.toUpperCase()}`
             })
         }
+
+        const rotate_button = document.querySelector('.rotate-sign')
+        rotate_button.addEventListener('click', event => {
+            if (selected_ship.orientation === 'horizontal') {
+                selected_ship.orientation = 'vertical'
+                this.message_board.innerText = `${selected_ship_div.innerText} - ${selected_ship.orientation.toUpperCase()}`
+            } else {
+                selected_ship.orientation = 'horizontal'
+                this.message_board.innerText = `${selected_ship_div.innerText} - ${selected_ship.orientation.toUpperCase()}`
+            }
+        })
         
         // creating the enemy tiles
         const enemyBoard = document.querySelector('.enemy-board')
@@ -88,7 +99,7 @@ export class Game {
                         if (ship_coord) {
                             selected_ship.col = ship_coord.col
                             selected_ship.row = ship_coord.row
-                            selected_ship_div.style.display = 'none'
+                            selected_ship_div.classList.add('hidden')
                             this.message_board.innerText = 'PLACE YOUR SHIPS'
                         } else {
                             this.message_board.innerText = 'INVALID SHIP POSITION'
@@ -98,9 +109,9 @@ export class Game {
                     this.player.colorTilesPlayer();
                     let ships_positions = this.player.ships.map(ship => ship.col)
                     if (ships_positions.every(ele => ele !== undefined)) {
+                        rotate_button.classList.add('hidden')
                         this.shoot();
                     }
-                    console.log(ships_positions)
                     
 
                 })

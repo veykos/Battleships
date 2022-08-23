@@ -124,6 +124,29 @@ body {
     transition: background-color .05s ease-in;
 }
 
+.rotate-sign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75em;
+    width: 8em;
+    text-align: center;
+    border: 1px solid white;
+}
+
+.rotate-sign:hover {
+    cursor: pointer;
+    background-color: rgb(141, 141, 141);
+    border: 1px rgb(212, 209, 208) solid;
+    transition: background-color .3s linear;
+}
+.rotate-sign:active {
+    cursor: pointer;
+    background-color: rgb(237, 235, 235);
+    border: 1px rgb(212, 209, 208) solid;
+    transition: background-color .05s ease-in;
+}
+
 .game-board {
     width: 1200px;
     min-height: 234px;
@@ -159,8 +182,9 @@ body {
     justify-content: space-between;
 }
 
+
 .dividing-line {
-    height: 700px;
+    height: 600px;
     width: 1px;
     color: white;
     opacity: 0.5;
