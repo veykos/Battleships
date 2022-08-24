@@ -74,6 +74,9 @@ body {
     font-size: 10em;
     color: #FFF;
 }
+.final-message:hover {
+    cursor: pointer;
+}
 
 .message {
     text-align: center;
@@ -231,36 +234,30 @@ body {
     animation: zoom-in-out 1s ease-in-out;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-/* leave this shit for later
-.game-container-wrapper {
-    height: 850px;
-    width: 800px;
-    position: relative;
+.welcome {
+    color: #FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5em;
+    gap: 20px;
+    border: 5px;
+    border-color: white;
+    border-style: double;
+    border-radius: 20px;
+    padding: 30px
 }
-
-
-  leave this shit for later
-.game-container-wrapper::before {
-    content: "";
-    background-image: url('./assets/background.jpg');
-    background-position: center;
-    background-size: cover;
-    position:absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    opacity: 0.8;
-} */
-
+.welcome:hover {
+    cursor: pointer;
+}
+.welcome h1 {
+    font-size: 7em;
+}
+.welcome h2 {
+    font-size: 2em;
+}
+.welcome p {
+    line-height: 1.7em;
+}
