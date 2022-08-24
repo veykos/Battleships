@@ -14,6 +14,7 @@ export class Cluster extends Bonus {
     use(tileCoordinatesObject,board) {
             let col = tileCoordinatesObject.col;
             let row = tileCoordinatesObject.row;
+            let results_from_use = [];
             // check if proper coordinates
             if ((col > 6 || col < 1) || (row > 9 || row < 1)) {
                 return console.log("Incorrect tile for using bonus")
@@ -22,11 +23,16 @@ export class Cluster extends Bonus {
         for (let r = row - 1; r <= row + 1; r++) {
             for (let c = col -1; c <= col + 1; c++) {
                 let coordinates = {'col':c, 'row':r}
-                board.markTile(coordinates)
+                let result = board.markTile(coordinates)
+                results_from_use.push(result)
                 }
             }
             this.uses -= 1;
-
+        if (results_from_use.includes(1)) {
+            return 1
+        } else {
+            return 0
+        }
     } 
 }
 
@@ -41,5 +47,6 @@ export class Volley extends Bonus {
             let coordinates = {'col':c, 'row': row}
             board.markTile(coordinates)
         }
+        this.uses -= 1
     }
 }
