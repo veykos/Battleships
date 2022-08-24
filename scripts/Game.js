@@ -134,8 +134,11 @@ export class Game {
             playerTiles[i].replaceWith(playerTiles[i].cloneNode(true))
         }
         ////
+
         this.message_board.innerText = 'DESTROY THE ENEMY FLEET!'
         // creating the tiles and adding querySelector to enemyBoard
+
+        
         let enemy_tiles = document.querySelectorAll('.enemy-tile')
         for (let i = 0; i < enemy_tiles.length; i ++) {
             enemy_tiles[i].addEventListener('click', event => {
