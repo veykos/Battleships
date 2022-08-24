@@ -146,7 +146,23 @@ export class Game {
         this.enemy.updateShipTiles()
         this.enemy.colorTilesEnemy();
         this.checkForWin();
-        let enemy_shoot_result = this.botAI.shoot(this.player)
+        // add bot's logic for using bonuses here :)
+        let enemy_shoot_result;
+        if (this.enemy_cluster.uses > 0 || this.enemy_volley > 0) {
+            let botRollDiceForBonus = Math.floor(Math.random() * 4);
+            if (botRollDiceForBonus === 2 && this.enemy_cluster.uses > 0) {
+                enemy_shoot_result =  this.botAI.useBonus(this.enemy_cluster,this.player)
+            } else if (botRollDiceForBonus === 3 && this.enemy_volley.uses > 0) {
+                enemy_shoot_result = this.botAI.useBonus(this.enemy_volley,this.player)
+            } else {
+                enemy_shoot_result = this.botAI.shoot(this.player)
+            }
+        } else {
+            enemy_shoot_result = this.botAI.shoot(this.player)
+        }
+
+
+        //let enemy_shoot_result = this.botAI.shoot(this.player)
         // Timeout the coloring and checking of result
         setTimeout(() => {
             this.player.updateShipTiles()
