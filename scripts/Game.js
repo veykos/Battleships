@@ -1,4 +1,5 @@
 import { Board } from "./Board.js"
+import { Cluster } from "./Bonus.js";
 import { Bot } from "./Bot.js";
 import { getTileCoordinates } from "./functions.js";
 import { AircraftCarrier, Ship, Battlecruiser } from "./Ship.js";
