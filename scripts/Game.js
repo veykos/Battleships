@@ -166,7 +166,7 @@ export class Game {
         // Timeout the coloring and checking of result
         setTimeout(() => {
             this.player.updateShipTiles()
-            if (enemy_shoot_result === 1) {
+            if (enemy_shoot_result[0] === 1) {
                 enemy_msg.innerText = 'THEY HIT OUR SHIP!'
             } else {
                 enemy_msg.innerText = 'THEY MISSED!'
@@ -185,12 +185,11 @@ export class Game {
         const player_volley_span = document.querySelector('.volley-player span')
         const player_cluster_span = document.querySelector('.cluster-player span')
         // end selection
-        console.log(enemy_cluster_span, enemy_volley_span,player_volley_span,player_cluster_span)
 
         let result = this.player_cluster.use(tile,this.enemy)
         this.player_cluster.inUse = false;
         player_cluster_span.innerText = `${this.player_cluster.uses}`
-        if (result === 1) {
+        if (result[0] === 1) {
             player_msg.innerText = 'DIRECT HIT'
         } else {
             player_msg.innerText = 'CALIBRATE THE TURRETS!'
@@ -220,9 +219,15 @@ export class Game {
         const player_volley_span = document.querySelector('.volley-player span')
         // end selection
 
-        this.player_volley.use(tile,this.enemy)
-        player_volley_span.innerText = ' ' + this.player_volley.uses;
+        
+        let result = this.player_volley.use(tile,this.enemy)
         this.player_volley.inUse = false;
+        if (result[0] === 1) {
+            player_msg.innerText = 'DIRECT HIT'
+        } else {
+            player_msg.innerText = 'CALIBRATE THE TURRETS!'
+        }
+        player_volley_span.innerText = ' ' + this.player_volley.uses;
         this.enemy.updateShipTiles()
         this.enemy.colorTilesEnemy();
         this.checkForWin();

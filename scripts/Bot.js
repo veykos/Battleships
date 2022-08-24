@@ -28,7 +28,10 @@ export class Bot {
 
         let coordinates = getRandomCoordBonus();
         let result = bonus.use(coordinates,board)
-        return result
+        for (let position of result[1]) {
+            this.positionsShot.push(JSON.stringify(position))
+        }
+        return result[0]
     }
 
     shoot(board) {
@@ -90,8 +93,8 @@ export class Bot {
             
             
             // shoot?
-            let resultOfShoot = board.markTile(coordinates);
-            this.addShotPosition(coordinates,resultOfShoot)
+            let resultOfShoot = [board.markTile(coordinates)];
+            this.addShotPosition(coordinates,resultOfShoot[0])
 
             return resultOfShoot;
     }
