@@ -18,6 +18,8 @@ export class Game {
         const botAi = new Bot();
         this.botAI = botAi;
         this.botAI.positionsShot = ['{"row":3,"col":3}']
+        const player_cluster = new Cluster
+        this.player_cluster = player_cluster
     }
     
     start() {
@@ -27,7 +29,7 @@ export class Game {
         this.player.generateBoard();
         // generate the playing boards
         this.enemy.placeFlotilia();
-        //this.player.placeFlotilia();
+        this.player.placeFlotilia();
         // COMMENT FOR NORMAL GAMEPLAY
         this.enemy.updateShipTiles();
         this.player.updateShipTiles();
@@ -124,8 +126,60 @@ export class Game {
 
         }
     }
-
+    normalGameplay = (tile) => {
+        const enemy_msg = document.querySelector('.enemy-msg')
+        const player_msg = document.querySelector('.player-msg')
+        let player_shoot_result = this.enemy.markTile(tile);
+        if (player_shoot_result === 1) {
+            player_msg.innerText = 'DIRECT HIT!'
+        } else {
+            player_msg.innerText = 'CALIBRATE THE TURRETS!'
+        }
+        this.enemy.updateShipTiles()
+        this.enemy.colorTilesEnemy();
+        this.checkForWin();
+        let enemy_shoot_result = this.botAI.shoot(this.player)
+        // Timeout the coloring and checking of result
+        setTimeout(() => {
+            this.player.updateShipTiles()
+            if (enemy_shoot_result === 1) {
+                enemy_msg.innerText = 'THEY HIT OUR SHIP!'
+            } else {
+                enemy_msg.innerText = 'THEY MISSED!'
+            }
+        }, 900)
+        setTimeout(() => this.player.colorTilesPlayer(), 1100)
+        setTimeout(() => this.checkForWin(), 1300)
+    }
+        
+        ClusterGameplay = (tile) => {
+            const enemy_msg = document.querySelector('.enemy-msg')
+        const player_msg = document.querySelector('.player-msg')
+            this.player_cluster.use(tile,this.enemy)
+            this.player_cluster.inUse = false;
+            this.enemy.updateShipTiles()
+            this.enemy.colorTilesEnemy();
+            this.checkForWin();
+            let enemy_shoot_result = this.botAI.shoot(this.player)
+            // Timeout the coloring and checking of result
+            setTimeout(() => {
+                this.player.updateShipTiles()
+                if (enemy_shoot_result === 1) {
+                    enemy_msg.innerText = 'THEY HIT OUR SHIP!'
+                } else {
+                    enemy_msg.innerText = 'THEY MISSED!'
+                }
+            }, 900)
+            setTimeout(() => this.player.colorTilesPlayer(), 1100)
+            setTimeout(() => this.checkForWin(), 1300)
+        }
+        
     shoot() {
+
+        const pClusterButton = document.querySelector('.cluster-player')
+        pClusterButton.addEventListener('click', event => {
+            this.player_cluster.inUse = true
+        })
         const enemy_msg = document.querySelector('.enemy-msg')
         const player_msg = document.querySelector('.player-msg')
         // REMOVE THE PLAYER TILES EVENTLISTENERS BY CLONING THEM
@@ -137,42 +191,25 @@ export class Game {
         ////
 
         this.message_board.innerText = 'DESTROY THE ENEMY FLEET!'
-        // creating the tiles and adding querySelector to enemyBoard
 
+        const distributor =(tile) => {
+            if (this.player_cluster.inUse && this.player_cluster.uses > 0) {
+                this.ClusterGameplay(tile);
+            } else {
+                this.normalGameplay(tile)
+            }
+        }
         
         let enemy_tiles = document.querySelectorAll('.enemy-tile')
-        for (let i = 0; i < enemy_tiles.length; i ++) {
+        for (let i = 0; i < enemy_tiles.length; i++) {
             enemy_tiles[i].addEventListener('click', event => {
-                let tile = getTileCoordinates(event.target)
-                let player_shoot_result = this.enemy.markTile(tile);
-                if (player_shoot_result === 1) {
-                    player_msg.innerText = 'DIRECT HIT!'
-                } else {
-                    player_msg.innerText = 'CALIBRATE THE TURRETS!'
-                }
-                this.enemy.updateShipTiles()
-                this.enemy.colorTilesEnemy();
-                this.checkForWin();
-                let enemy_shoot_result = this.botAI.shoot(this.player)
-                // Timeout the coloring and checking of result
-                setTimeout(() => {
-                    this.player.updateShipTiles()
-                    if (enemy_shoot_result === 1) {
-                        enemy_msg.innerText = 'THEY HIT OUR SHIP!'
-                    } else {
-                        enemy_msg.innerText = 'THEY MISSED!'
-                    }
-                }, 900)
-                setTimeout(() => this.player.colorTilesPlayer(), 1100)
-                setTimeout(() => this.checkForWin(), 1300)
-                // this.player.updateShipTiles();
-                // this.player.colorTilesPlayer();
-                // this.checkForWin();
-
-            
+            let tile = getTileCoordinates(event.target)
+            distributor(tile)
             })
         }
+
     }
+
 
     checkForWin() {
         // check for win of player: 
