@@ -19,6 +19,18 @@ export class Bot {
         this.lastShotHit = hitOrMiss
     }
 
+    useBonus(bonus, board) {
+        const getRandomCoordBonus = () => {
+            let col = Math.floor(Math.random()*6) + 1;
+            let row = Math.floor(Math.random()*9);
+            return {'col': col, 'row':row}
+        }
+
+        let coordinates = getRandomCoordBonus();
+        let result = bonus.use(coordinates,board)
+        return result
+    }
+
     shoot(board) {
         let coordinates;
 

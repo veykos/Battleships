@@ -43,10 +43,17 @@ export class Volley extends Bonus {
     use(tileCoordinatesObject,board) {
         let col = tileCoordinatesObject.col;
         let row = tileCoordinatesObject.row;
+        let results_from_use = [];
         for (let c = 0; c < 8; c++) {
             let coordinates = {'col':c, 'row': row}
-            board.markTile(coordinates)
+            let result = board.markTile(coordinates)
+            results_from_use.push(result)
         }
         this.uses -= 1
+        if (results_from_use.includes(1)) {
+            return 1
+        } else {
+            return 0
+        }
     }
 }

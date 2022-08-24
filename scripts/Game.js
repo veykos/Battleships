@@ -23,6 +23,11 @@ export class Game {
         this.player_cluster = player_cluster
         const player_volley = new Volley
         this.player_volley = player_volley
+        // create bonuses for bot
+        const enemy_cluster = new Cluster;
+        this.enemy_cluster = enemy_cluster;
+        const enemy_volley = new Volley;
+        this.enemy_volley = enemy_volley;
     }
     
     start() {
