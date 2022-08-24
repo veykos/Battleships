@@ -32,7 +32,7 @@ export class Game {
         this.player.generateBoard();
         // generate the playing boards
         this.enemy.placeFlotilia();
-        this.player.placeFlotilia();
+        //this.player.placeFlotilia();
         // COMMENT FOR NORMAL GAMEPLAY
         this.enemy.updateShipTiles();
         this.player.updateShipTiles();
@@ -168,7 +168,7 @@ export class Game {
 
         let result = this.player_cluster.use(tile,this.enemy)
         this.player_cluster.inUse = false;
-        player_cluster_span.innerText = this.player_cluster.uses;
+        player_cluster_span.innerText = `${this.player_cluster.uses}`
         if (result === 1) {
             player_msg.innerText = 'DIRECT HIT'
         } else {
@@ -196,13 +196,11 @@ export class Game {
         const enemy_msg = document.querySelector('.enemy-msg')
         const player_msg = document.querySelector('.player-msg')
         // querySelect the bonuses counters:
-        const enemy_volley_span = document.querySelector('.volley-enemy span')
-        const enemy_cluster_span = document.querySelector('.cluster-enemy span')
         const player_volley_span = document.querySelector('.volley-player span')
         // end selection
 
         this.player_volley.use(tile,this.enemy)
-        player_volley_span.innerText = this.player_volley.uses;
+        player_volley_span.innerText = ' ' + this.player_volley.uses;
         this.player_volley.inUse = false;
         this.enemy.updateShipTiles()
         this.enemy.colorTilesEnemy();
@@ -227,11 +225,13 @@ export class Game {
         pClusterButton.addEventListener('click', event => {
             this.player_cluster.inUse = true
         })
+        pClusterButton.classList.remove('hidden')
         // add working player volley button
         const pVolleyButton = document.querySelector('.volley-player') 
         pVolleyButton.addEventListener('click', event =>{
             this.player_volley.inUse = true
         })
+        pVolleyButton.classList.remove('hidden')
 
 
 
