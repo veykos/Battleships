@@ -177,6 +177,12 @@ export class Board {
     
     placeFlotilia() {
         for (let ship of this.ships) {
+            let orientation_randomize = Math.floor(Math.random() * 2)
+            if (orientation_randomize === 0) {
+                ship.orientation = 'horizontal'
+            } else {
+                ship.orientation = 'vertical'
+            }
             while(ship.col === undefined || ship.row === undefined) {
                 let ship_coord = this.placeShip(this.getRandomCoordinates(), ship)
                 if (ship_coord) {
