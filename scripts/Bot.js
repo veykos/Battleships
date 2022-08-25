@@ -31,7 +31,7 @@ export class Bot {
         for (let position of result[1]) {
             this.positionsShot.push(JSON.stringify(position))
         }
-        return result[0]
+        return result // returns an array
     }
 
     shoot(board) {
