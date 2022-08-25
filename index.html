@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battleships</title>
     <link rel="stylesheet" href="./styles/style.css">
-    <style>@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap');</style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap');
+    </style>
 </head>
+
 <body>
     <div class="final-message hidden">YOU WIN!</div>
     <div class="welcome">
         <h1>BATTLESHIPS</h1>
         <h2>A GAME BY PAVEL POPOV</h2>
         <p>
-            <br>THE RULES ARE SIMPLE: FIRST PLACE YOUR SHIPS ON YOUR PLAYING FIELD BY CLICKING 
+            <br>THE RULES ARE SIMPLE: FIRST PLACE YOUR SHIPS ON YOUR PLAYING FIELD BY CLICKING
             <br>ON THEIR NAMES AND THEN CLICKING ON THE CHOSEN TILE.
-            <br>AN AICRAFT CARRIER TAKES UP 5 TILES, BATTLECRUISERS TAKE UP 3 AND A BOAT - ONLY 1.
+            <br>AN AIRCRAFT CARRIER TAKES UP 5 TILES, BATTLECRUISERS TAKE UP 3 AND A BOAT - ONLY 1.
             <br>AFTER YOU'VE PLACED YOUR SHIPS, IT'S TIME FOR THE GAME TO START!
             <br>CLICK ON THE ENEMY'S TILES TO SHOOT AT THEM!
             <br>GREEN MEANS YOU'VE SUCCESSFULLY HIT AN ENEMY SHIP.
@@ -56,9 +60,9 @@
                 <h3>PLAYER SHIP TILES LEFT: <span id="player-ships"></span></h3>
             </div>
         </div>
-        <div class="game-container">    
+        <div class="game-container">
             <div class="enemy-board board">
-                
+
             </div>
             <div class="dividing-line">
                 <hr class="dividing-line">
@@ -73,4 +77,5 @@
     <script type="module" src="./scripts/Board.js"></script>
     <script type="module" src="./scripts/index.js"></script>
 </body>
+
 </html>

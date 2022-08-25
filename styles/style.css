@@ -1,263 +1,339 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
-
 
 /* --------- CSS RESETTER ------- */
 
 @keyframes zoom-in-out {
-    0% {
-        transform: scale(0.9);   
-    }
-    50% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 body {
-    transform: scale(0.67);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: 'Oswald', sans-serif;
-    background-image: url('../assets/background.jpg');
+  transform: scale(0.67);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Oswald", sans-serif;
+  background-image: url("../assets/background.jpg");
 }
 .hidden {
-    display:none !important;
+  display: none !important;
 }
-.final-message{
-    font-size: 10em;
-    color: #FFF;
+.final-message {
+  font-size: 10em;
+  color: #fff;
 }
 .final-message:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .message {
-    text-align: center;
-    font-size: 1.5em;
+  text-align: center;
+  font-size: 1.5em;
 }
 .hit-messages {
-    display: flex;
-    justify-content: space-between;
-    width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  width: 1200px;
 }
-.hit-messages div{
-    font-size: 1.2em;
+.hit-messages div {
+  font-size: 1.2em;
 }
 .scoreboard {
-    display: flex;
-    justify-content: space-between;
-    width: 1200px;
-    font-size: 1.2em;
+  display: flex;
+  justify-content: space-between;
+  width: 1200px;
+  font-size: 1.2em;
 }
 
 .ship-holder {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
 }
 .ship-holder div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.75em;
-    width: 30%;
-    height: 1.5em;
-    text-align: center;
-    border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.75em;
+  width: 30%;
+  height: 1.5em;
+  text-align: center;
+  border: 1px solid white;
 }
 .ship-holder div:hover {
-    cursor: pointer;
-    background-color: rgb(141, 141, 141);
-    border: 1px rgb(212, 209, 208) solid;
-    transition: background-color .3s linear;
+  cursor: pointer;
+  background-color: rgb(141, 141, 141);
+  border: 1px rgb(212, 209, 208) solid;
+  transition: background-color 0.3s linear;
 }
 .ship-holder div:active {
-    cursor: pointer;
-    background-color: rgb(237, 235, 235);
-    border: 1px rgb(212, 209, 208) solid;
-    transition: background-color .05s ease-in;
+  cursor: pointer;
+  background-color: rgb(237, 235, 235);
+  border: 1px rgb(212, 209, 208) solid;
+  transition: background-color 0.05s ease-in;
 }
 
 .rotate-sign {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.65em;
-    width: 8em;
-    text-align: center;
-    border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.65em;
+  width: 8em;
+  text-align: center;
+  border: 1px solid white;
 }
 
 .rotate-sign:hover {
-    cursor: pointer;
-    background-color: rgb(141, 141, 141);
-    border: 1px rgb(212, 209, 208) solid;
-    transition: background-color .3s linear;
+  cursor: pointer;
+  background-color: rgb(141, 141, 141);
+  border: 1px rgb(212, 209, 208) solid;
+  transition: background-color 0.3s linear;
 }
 .rotate-sign:active {
-    cursor: pointer;
-    background-color: rgb(237, 235, 235);
-    border: 1px rgb(212, 209, 208) solid;
-    transition: background-color .05s ease-in;
+  cursor: pointer;
+  background-color: rgb(237, 235, 235);
+  border: 1px rgb(212, 209, 208) solid;
+  transition: background-color 0.05s ease-in;
 }
 
 .game-board {
-    width: 1200px;
-    min-height: 234px;
-    /* REMOVE MIN HEIGHT IF YOU WANT IT TO RESIZE */
-    padding: 30px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: 5px;
-    border-color: white;
-    border-style: double;
-    display: flex;
-    flex-direction: column;
-    color: #FFF;
-    font-size: 2em;
-    justify-content: space-between;
-    gap: 20px;
-
+  width: 1200px;
+  min-height: 234px;
+  /* REMOVE MIN HEIGHT IF YOU WANT IT TO RESIZE */
+  padding: 30px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 5px;
+  border-color: white;
+  border-style: double;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  font-size: 2em;
+  justify-content: space-between;
+  gap: 20px;
 }
 .game-container-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .game-container {
-    width: 1300px;
-    display: flex;
-    align-items: center;
-    border: 5px;
-    border-color: white;
-    border-style: double;
-    border-radius: 20px;
-    justify-content: space-between;
+  width: 1300px;
+  display: flex;
+  align-items: center;
+  border: 5px;
+  border-color: white;
+  border-style: double;
+  border-radius: 20px;
+  justify-content: space-between;
 }
 
-
 .dividing-line {
-    height: 600px;
-    width: 1px;
-    color: white;
-    opacity: 0.5;
+  height: 600px;
+  width: 1px;
+  color: white;
+  opacity: 0.5;
 }
 
 .board {
-    display:flex;
-    padding:20px;
+  display: flex;
+  padding: 20px;
 }
 
 .tile {
-    margin:10px;
-    height:50px;
-    width: 50px;
-    border: 1px rgba(185, 185, 185, 0.741) solid;
-    border-radius: 10px;
+  margin: 10px;
+  height: 50px;
+  width: 50px;
+  border: 1px rgba(185, 185, 185, 0.741) solid;
+  border-radius: 10px;
 }
 
 .enemy-tile {
-    background-color: rgba(128, 128, 128, 0.415);
+  background-color: rgba(128, 128, 128, 0.415);
 }
 
 .tile:hover {
-    background-color: rgba(210, 211, 210, 0.504);
-    border: 1px rgb(212, 209, 208) solid;
-    transition: background-color .3s linear;
+  background-color: rgba(210, 211, 210, 0.504);
+  border: 1px rgb(212, 209, 208) solid;
+  transition: background-color 0.3s linear;
 }
 
-
 .occupied {
-    background-color: rgb(58 74 183 / 71%);
+  background-color: rgb(58 74 183 / 71%);
 }
 
 .hit-empty {
-    background-color: rgba(165, 42, 42, 0.503);
-    transition: background-color .5s linear;
-    animation: zoom-in-out 1s ease-in-out;
-
+  background-color: rgba(165, 42, 42, 0.503);
+  transition: background-color 0.5s linear;
+  animation: zoom-in-out 1s ease-in-out;
 }
 
 .hit-with-ship {
-    background-color: rgba(12, 220, 12, 0.503);
-    transition: background-color .5s linear;
-    animation: zoom-in-out 1s ease-in-out;
+  background-color: rgba(12, 220, 12, 0.503);
+  transition: background-color 0.5s linear;
+  animation: zoom-in-out 1s ease-in-out;
 }
 
 .welcome {
-    color: #FFF;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 1.5em;
-    gap: 20px;
-    border: 5px;
-    border-color: white;
-    border-style: double;
-    border-radius: 20px;
-    padding: 30px
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.5em;
+  gap: 20px;
+  border: 5px;
+  border-color: white;
+  border-style: double;
+  border-radius: 20px;
+  padding: 30px;
 }
 .welcome:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 .welcome h1 {
-    font-size: 7em;
+  font-size: 7em;
 }
 .welcome h2 {
-    font-size: 2em;
+  font-size: 2em;
 }
 .welcome p {
-    line-height: 1.7em;
+  line-height: 1.7em;
 }
