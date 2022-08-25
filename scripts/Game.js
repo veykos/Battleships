@@ -2,7 +2,6 @@ import { Board } from "./Board.js"
 import { Cluster, Volley } from "./Bonus.js";
 import { Bot } from "./Bot.js";
 import { getTileCoordinates } from "./functions.js";
-import { AircraftCarrier, Ship, Battlecruiser } from "./Ship.js";
 
 
 
@@ -54,7 +53,6 @@ export class Game {
 
         let selectedShipDiv;
         let selectedShip;
-
         const shipsButtons = [acVert,acHor,bcVert,bcHor,sh1,sh2]
         for (let i = 0; i < shipsButtons.length; i++) {
             shipsButtons[i].addEventListener('click', event => {
