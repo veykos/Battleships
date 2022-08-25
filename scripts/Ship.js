@@ -1,5 +1,5 @@
 export class Ship {
-    constructor(orientation = 'horizontal', row,col) {
+    constructor(row,col,orientation = 'horizontal') {
         this.col = col;
         this.row = row;
         this.size = 1;
@@ -8,14 +8,14 @@ export class Ship {
 }
 
 export class Battlecruiser extends Ship {
-    constructor(orientation = 'horizontal', row,col) {
+    constructor(row,col,orientation = 'horizontal') {
         super(orientation, row,col)
         this.size = 3;
     }
 }
 
 export class AircraftCarrier extends Ship {
-    constructor(orientation = 'horizontal', row,col) {
+    constructor(row,col,orientation = 'horizontal') {
         super(orientation, row,col)
         this.size = 5;
     }
