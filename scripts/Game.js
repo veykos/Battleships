@@ -176,7 +176,7 @@ export class Game {
         setTimeout(() => this.checkForWin(), 1300)
     }
         
-    ClusterGameplay = (tile) => {
+    clusterGameplay = (tile) => {
         const enemyMsg = document.querySelector('.enemy-msg')
         const playerMsg = document.querySelector('.player-msg')
         // querySelect the bonuses counters:
@@ -209,7 +209,7 @@ export class Game {
 
     }
 
-    VolleyGameplay = (tile) => {
+    volleyGameplay = (tile) => {
         const enemyMsg = document.querySelector('.enemy-msg')
         const playerMsg = document.querySelector('.player-msg')
         // querySelect the bonuses counters:
@@ -255,11 +255,6 @@ export class Game {
             this.playerVolley.inUse = true
         })
         pVolleyButton.classList.remove('hidden')
-
-
-
-        const enemyMsg = document.querySelector('.enemy-msg')
-        const playerMsg = document.querySelector('.player-msg')
         // REMOVE THE PLAYER TILES EVENTLISTENERS BY CLONING THEM
         // THIS FIXES THE MULTISHOT BUG
         const playerTiles = document.querySelectorAll('.player-tile')
@@ -272,9 +267,9 @@ export class Game {
         // define the distributor function which checks if bonuses are in use or not
         const distributor =(tile) => {
             if (this.playerCluster.inUse && this.playerCluster.uses > 0) {
-                this.ClusterGameplay(tile);
+                this.clusterGameplay(tile);
             } else if (this.playerVolley.inUse && this.playerVolley.uses > 0) {
-                this.VolleyGameplay(tile)
+                this.volleyGameplay(tile)
             } else {
                 this.normalGameplay(tile)
             }
