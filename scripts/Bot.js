@@ -22,7 +22,7 @@ export class Bot {
     useBonus(bonus, board) {
         const getRandomCoordBonus = () => {
             let col = Math.floor(Math.random()*6) + 1;
-            let row = Math.floor(Math.random()*9);
+            let row = Math.floor(Math.random()*8) + 1;
             return {'col': col, 'row':row}
         }
 
