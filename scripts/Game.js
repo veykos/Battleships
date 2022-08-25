@@ -14,20 +14,20 @@ export class Game {
         this.player = playerPlayingBoard;
         this.states = ['placing','shooting'];
         this.state = this.states[0]
-        this.message_board = document.querySelector('.message')
+        this.messageBoard = document.querySelector('.message')
         // create the botAI
         const botAi = new Bot();
         this.botAI = botAi;
         // create bonuses for player
-        const player_cluster = new Cluster
-        this.player_cluster = player_cluster
-        const player_volley = new Volley
-        this.player_volley = player_volley
+        const playerCluster = new Cluster
+        this.playerCluster = playerCluster
+        const playerVolley = new Volley
+        this.playerVolley = playerVolley
         // create bonuses for bot
-        const enemy_cluster = new Cluster;
-        this.enemy_cluster = enemy_cluster;
-        const enemy_volley = new Volley;
-        this.enemy_volley = enemy_volley;
+        const enemyCluster = new Cluster;
+        this.enemyCluster = enemyCluster;
+        const enemyVolley = new Volley;
+        this.enemyVolley = enemyVolley;
     }
     
     start() {
@@ -43,7 +43,7 @@ export class Game {
         this.player.updateShipTiles();
         // place enemy ships and our ships :)
         
-        this.message_board.innerText = 'POSITION YOUR FLEET!'
+        this.messageBoard.innerText = 'POSITION YOUR FLEET!'
 
         let acVert = document.querySelector('#AC1')
         let acHor = document.querySelector('#AC2')
@@ -52,27 +52,27 @@ export class Game {
         let sh1 = document.querySelector('#SH1')
         let sh2 = document.querySelector('#SH2')
 
-        let selected_ship_div;
-        let selected_ship;
+        let selectedShipDiv;
+        let selectedShip;
 
-        const ships_buttons = [acVert,acHor,bcVert,bcHor,sh1,sh2]
-        for (let i = 0; i < ships_buttons.length; i++) {
-            ships_buttons[i].addEventListener('click', event => {
-                selected_ship_div = event.target;
-                let selected_ship_div_idx = ships_buttons.indexOf(selected_ship_div)
-                selected_ship = this.player.ships[selected_ship_div_idx]
-                this.message_board.innerText = `${selected_ship_div.innerText} - ${selected_ship.orientation.toUpperCase()}`
+        const shipsButtons = [acVert,acHor,bcVert,bcHor,sh1,sh2]
+        for (let i = 0; i < shipsButtons.length; i++) {
+            shipsButtons[i].addEventListener('click', event => {
+                selectedShipDiv = event.target;
+                let selectedShipDivIdx = shipsButtons.indexOf(selectedShipDiv)
+                selectedShip = this.player.ships[selectedShipDivIdx]
+                this.messageBoard.innerText = `${selectedShipDiv.innerText} - ${selectedShip.orientation.toUpperCase()}`
             })
         }
 
-        const rotate_button = document.querySelector('.rotate-sign')
-        rotate_button.addEventListener('click', event => {
-            if (selected_ship.orientation === 'horizontal') {
-                selected_ship.orientation = 'vertical'
-                this.message_board.innerText = `${selected_ship_div.innerText} - ${selected_ship.orientation.toUpperCase()}`
+        const rotateButton = document.querySelector('.rotate-sign')
+        rotateButton.addEventListener('click', event => {
+            if (selectedShip.orientation === 'horizontal') {
+                selectedShip.orientation = 'vertical'
+                this.messageBoard.innerText = `${selectedShipDiv.innerText} - ${selectedShip.orientation.toUpperCase()}`
             } else {
-                selected_ship.orientation = 'horizontal'
-                this.message_board.innerText = `${selected_ship_div.innerText} - ${selected_ship.orientation.toUpperCase()}`
+                selectedShip.orientation = 'horizontal'
+                this.messageBoard.innerText = `${selectedShipDiv.innerText} - ${selectedShip.orientation.toUpperCase()}`
             }
         })
         
@@ -104,22 +104,22 @@ export class Game {
                 oneTile.classList.add('tile')
                 oneTile.addEventListener('click', event => {
                     let tile_coord = getTileCoordinates(event.target);
-                    if (selected_ship.col === undefined) {
-                        let ship_coord = this.player.placeShip(tile_coord, selected_ship);
+                    if (selectedShip.col === undefined) {
+                        let ship_coord = this.player.placeShip(tile_coord, selectedShip);
                         if (ship_coord) {
-                            selected_ship.col = ship_coord.col
-                            selected_ship.row = ship_coord.row
-                            selected_ship_div.classList.add('hidden')
-                            this.message_board.innerText = 'PLACE YOUR SHIPS'
+                            selectedShip.col = ship_coord.col
+                            selectedShip.row = ship_coord.row
+                            selectedShipDiv.classList.add('hidden')
+                            this.messageBoard.innerText = 'PLACE YOUR SHIPS'
                         } else {
-                            this.message_board.innerText = 'INVALID SHIP POSITION'
+                            this.messageBoard.innerText = 'INVALID SHIP POSITION'
                         }
                     }
                     this.player.updateShipTiles();
                     this.player.colorTilesPlayer();
-                    let ships_positions = this.player.ships.map(ship => ship.col)
-                    if (ships_positions.every(ele => ele !== undefined)) {
-                        rotate_button.classList.add('hidden')
+                    let shipsPositions = this.player.ships.map(ship => ship.col)
+                    if (shipsPositions.every(ele => ele !== undefined)) {
+                        rotateButton.classList.add('hidden')
                         this.shoot();
                     }
                     
@@ -135,41 +135,41 @@ export class Game {
         }
     }
     normalGameplay = (tile) => {
-        const enemy_msg = document.querySelector('.enemy-msg')
-        const player_msg = document.querySelector('.player-msg')
+        const enemyMsg = document.querySelector('.enemy-msg')
+        const playerMsg = document.querySelector('.player-msg')
         let player_shoot_result = this.enemy.markTile(tile);
         if (player_shoot_result === 1) {
-            player_msg.innerText = 'DIRECT HIT!'
+            playerMsg.innerText = 'DIRECT HIT!'
         } else {
-            player_msg.innerText = 'CALIBRATE THE TURRETS!'
+            playerMsg.innerText = 'CALIBRATE THE TURRETS!'
         }
         this.enemy.updateShipTiles()
         this.enemy.colorTilesEnemy();
         this.checkForWin();
         // add bot's logic for using bonuses here :)
-        let enemy_shoot_result;
-        if (this.enemy_cluster.uses > 0 || this.enemy_volley > 0) {
+        let enemyShootResult;
+        if (this.enemyCluster.uses > 0 || this.enemyVolley.uses > 0) {
             let botRollDiceForBonus = Math.floor(Math.random() * 4);
-            if (botRollDiceForBonus === 2 && this.enemy_cluster.uses > 0) {
-                enemy_shoot_result =  this.botAI.useBonus(this.enemy_cluster,this.player)
-            } else if (botRollDiceForBonus === 3 && this.enemy_volley.uses > 0) {
-                enemy_shoot_result = this.botAI.useBonus(this.enemy_volley,this.player)
+            if (botRollDiceForBonus === 2 && this.enemyCluster.uses > 0) {
+                enemyShootResult =  this.botAI.useBonus(this.enemyCluster,this.player)
+            } else if (botRollDiceForBonus === 3 && this.enemyVolley.uses > 0) {
+                enemyShootResult = this.botAI.useBonus(this.enemyVolley,this.player)
             } else {
-                enemy_shoot_result = this.botAI.shoot(this.player)
+                enemyShootResult = this.botAI.shoot(this.player)
             }
         } else {
-            enemy_shoot_result = this.botAI.shoot(this.player)
+            enemyShootResult = this.botAI.shoot(this.player)
         }
 
 
-        //let enemy_shoot_result = this.botAI.shoot(this.player)
+        //let enemyShootResult = this.botAI.shoot(this.player)
         // Timeout the coloring and checking of result
         setTimeout(() => {
             this.player.updateShipTiles()
-            if (enemy_shoot_result[0] === 1) {
-                enemy_msg.innerText = 'THEY HIT OUR SHIP!'
+            if (enemyShootResult[0] === 1) {
+                enemyMsg.innerText = 'THEY HIT OUR SHIP!'
             } else {
-                enemy_msg.innerText = 'THEY MISSED!'
+                enemyMsg.innerText = 'THEY MISSED!'
             }
         }, 900)
         setTimeout(() => this.player.colorTilesPlayer(), 1100)
@@ -177,34 +177,31 @@ export class Game {
     }
         
     ClusterGameplay = (tile) => {
-        const enemy_msg = document.querySelector('.enemy-msg')
-        const player_msg = document.querySelector('.player-msg')
+        const enemyMsg = document.querySelector('.enemy-msg')
+        const playerMsg = document.querySelector('.player-msg')
         // querySelect the bonuses counters:
-        const enemy_volley_span = document.querySelector('.volley-enemy span')
-        const enemy_cluster_span = document.querySelector('.cluster-enemy span')
-        const player_volley_span = document.querySelector('.volley-player span')
-        const player_cluster_span = document.querySelector('.cluster-player span')
+        const playerClusterSpan = document.querySelector('.cluster-player span')
         // end selection
 
-        let result = this.player_cluster.use(tile,this.enemy)
-        this.player_cluster.inUse = false;
-        player_cluster_span.innerText = `${this.player_cluster.uses}`
+        let result = this.playerCluster.use(tile,this.enemy)
+        this.playerCluster.inUse = false;
+        playerClusterSpan.innerText = `${this.playerCluster.uses}`
         if (result[0] === 1) {
-            player_msg.innerText = 'DIRECT HIT'
+            playerMsg.innerText = 'DIRECT HIT'
         } else {
-            player_msg.innerText = 'CALIBRATE THE TURRETS!'
+            playerMsg.innerText = 'CALIBRATE THE TURRETS!'
         }
         this.enemy.updateShipTiles()
         this.enemy.colorTilesEnemy();
         this.checkForWin();
-        let enemy_shoot_result = this.botAI.shoot(this.player)
+        let enemyShootResult = this.botAI.shoot(this.player)
         // Timeout the coloring and checking of result
         setTimeout(() => {
             this.player.updateShipTiles()
-            if (enemy_shoot_result === 1) {
-                enemy_msg.innerText = 'THEY HIT OUR SHIP!'
+            if (enemyShootResult === 1) {
+                enemyMsg.innerText = 'THEY HIT OUR SHIP!'
             } else {
-                enemy_msg.innerText = 'THEY MISSED!'
+                enemyMsg.innerText = 'THEY MISSED!'
             }
         }, 900)
         setTimeout(() => this.player.colorTilesPlayer(), 1100)
@@ -213,32 +210,32 @@ export class Game {
     }
 
     VolleyGameplay = (tile) => {
-        const enemy_msg = document.querySelector('.enemy-msg')
-        const player_msg = document.querySelector('.player-msg')
+        const enemyMsg = document.querySelector('.enemy-msg')
+        const playerMsg = document.querySelector('.player-msg')
         // querySelect the bonuses counters:
-        const player_volley_span = document.querySelector('.volley-player span')
+        const playerVolleySpan = document.querySelector('.volley-player span')
         // end selection
 
         
-        let result = this.player_volley.use(tile,this.enemy)
-        this.player_volley.inUse = false;
+        let result = this.playerVolley.use(tile,this.enemy)
+        this.playerVolley.inUse = false;
         if (result[0] === 1) {
-            player_msg.innerText = 'DIRECT HIT'
+            playerMsg.innerText = 'DIRECT HIT'
         } else {
-            player_msg.innerText = 'CALIBRATE THE TURRETS!'
+            playerMsg.innerText = 'CALIBRATE THE TURRETS!'
         }
-        player_volley_span.innerText = ' ' + this.player_volley.uses;
+        playerVolleySpan.innerText = ' ' + this.playerVolley.uses;
         this.enemy.updateShipTiles()
         this.enemy.colorTilesEnemy();
         this.checkForWin();
-        let enemy_shoot_result = this.botAI.shoot(this.player)
+        let enemyShootResult = this.botAI.shoot(this.player)
         // Timeout the coloring and checking of result
         setTimeout(() => {
             this.player.updateShipTiles()
-            if (enemy_shoot_result === 1) {
-                enemy_msg.innerText = 'THEY HIT OUR SHIP!'
+            if (enemyShootResult === 1) {
+                enemyMsg.innerText = 'THEY HIT OUR SHIP!'
             } else {
-                enemy_msg.innerText = 'THEY MISSED!'
+                enemyMsg.innerText = 'THEY MISSED!'
             }
         }, 900)
         setTimeout(() => this.player.colorTilesPlayer(), 1100)
@@ -249,20 +246,20 @@ export class Game {
         // add working player cluster button
         const pClusterButton = document.querySelector('.cluster-player')
         pClusterButton.addEventListener('click', event => {
-            this.player_cluster.inUse = true
+            this.playerCluster.inUse = true
         })
         pClusterButton.classList.remove('hidden')
         // add working player volley button
         const pVolleyButton = document.querySelector('.volley-player') 
         pVolleyButton.addEventListener('click', event =>{
-            this.player_volley.inUse = true
+            this.playerVolley.inUse = true
         })
         pVolleyButton.classList.remove('hidden')
 
 
 
-        const enemy_msg = document.querySelector('.enemy-msg')
-        const player_msg = document.querySelector('.player-msg')
+        const enemyMsg = document.querySelector('.enemy-msg')
+        const playerMsg = document.querySelector('.player-msg')
         // REMOVE THE PLAYER TILES EVENTLISTENERS BY CLONING THEM
         // THIS FIXES THE MULTISHOT BUG
         const playerTiles = document.querySelectorAll('.player-tile')
@@ -271,21 +268,21 @@ export class Game {
         }
         ////
 
-        this.message_board.innerText = 'DESTROY THE ENEMY FLEET!'
+        this.messageBoard.innerText = 'DESTROY THE ENEMY FLEET!'
         // define the distributor function which checks if bonuses are in use or not
         const distributor =(tile) => {
-            if (this.player_cluster.inUse && this.player_cluster.uses > 0) {
+            if (this.playerCluster.inUse && this.playerCluster.uses > 0) {
                 this.ClusterGameplay(tile);
-            } else if (this.player_volley.inUse && this.player_volley.uses > 0) {
+            } else if (this.playerVolley.inUse && this.playerVolley.uses > 0) {
                 this.VolleyGameplay(tile)
             } else {
                 this.normalGameplay(tile)
             }
         }
         // add the eventListener for distributor to all enemy tiles
-        let enemy_tiles = document.querySelectorAll('.enemy-tile')
-        for (let i = 0; i < enemy_tiles.length; i++) {
-            enemy_tiles[i].addEventListener('click', event => {
+        let enemyTiles = document.querySelectorAll('.enemy-tile')
+        for (let i = 0; i < enemyTiles.length; i++) {
+            enemyTiles[i].addEventListener('click', event => {
             let tile = getTileCoordinates(event.target)
             distributor(tile)
             })
@@ -296,17 +293,17 @@ export class Game {
 
     checkForWin() {
         // check for win of player: 
-        const final_msg = document.querySelector('.final-message')
-        const game_container = document.querySelector('.game-container-wrapper')
+        const finalMsg = document.querySelector('.final-message')
+        const gameContainer = document.querySelector('.game-container-wrapper')
         if (this.enemy.shipTiles === 0) {
-            final_msg.innerText = 'YOU WIN !'
-            final_msg.classList.remove('hidden')
-            game_container.classList.add('hidden')
+            finalMsg.innerText = 'YOU WIN !'
+            finalMsg.classList.remove('hidden')
+            gameContainer.classList.add('hidden')
         }
         else if (this.player.shipTiles === 0) {
-            final_msg.innerText = 'YOU LOSE !'
-            final_msg.classList.remove('hidden')
-            game_container.classList.add('hidden')
+            finalMsg.innerText = 'YOU LOSE !'
+            finalMsg.classList.remove('hidden')
+            gameContainer.classList.add('hidden')
         }
     };
 }

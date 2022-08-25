@@ -48,17 +48,17 @@ export class Board {
         let row = tileCoordinatesObject.row;
         let size = ship.size;
         let orientation = ship.orientation;
-        let start_for_hor;
+        let startForHor;
         if (size === 1) {
-            start_for_hor = col - 1;
+            startForHor = col - 1;
         } else {
-            start_for_hor = col - ((size-1)/2) // start checking the row from (size -1) / 2
+            startForHor = col - ((size-1)/2) // start checking the row from (size -1) / 2
         }
-        let start_for_ver;
+        let startForVer;
         if (size === 1) {
-            start_for_ver = row - 1;
+            startForVer = row - 1;
         } else {
-            start_for_ver = row - ((size-1)/2) //start the vertical check from (size -1) / 2
+            startForVer = row - ((size-1)/2) //start the vertical check from (size -1) / 2
         }
         // make the logic for placing the ship and checking if position is valid 
         if (orientation === 'horizontal') {
@@ -68,7 +68,7 @@ export class Board {
                     return 
                 }
             } else {
-                for (let i = start_for_hor ; i < size + start_for_hor; i++) {
+                for (let i = startForHor ; i < size + startForHor; i++) {
                     if (this.gamingTiles[row][i] === 1 || this.gamingTiles[row][i] === undefined) {
                         return 
                         // FOR NOW CONSOLE LOG LATER FIX
@@ -78,7 +78,7 @@ export class Board {
             if (size === 1) {
                 this.gamingTiles[row][col] = 1;
             } else {
-                for (let i = start_for_hor ; i < size + start_for_hor; i++) {
+                for (let i = startForHor ; i < size + startForHor; i++) {
                     this.gamingTiles[row][i] = 1;
                 }
 
@@ -88,16 +88,16 @@ export class Board {
             // ADD LOGIC FOR VERTICAL CHECKING
         } else if (orientation === 'vertical') {
             // check if row will be out of bound !! 
-            if (start_for_ver < 0 || (row + ((size-1) / 2)) > 9) {
+            if (startForVer < 0 || (row + ((size-1) / 2)) > 9) {
                 return 
             }
-            for (let i = start_for_ver ; i < size + start_for_ver; i++) {
+            for (let i = startForVer ; i < size + startForVer; i++) {
                 if (this.gamingTiles[i][col] === 1 || this.gamingTiles[i][col] === undefined) {
                     return 
                     // FOR NOW LOG LATER FIX
                 }
             }
-            for (let i = start_for_ver ; i < size + start_for_ver; i++) {
+            for (let i = startForVer ; i < size + startForVer; i++) {
                 this.gamingTiles[i][col] = 1;
             }
 
@@ -177,8 +177,8 @@ export class Board {
     
     placeFlotilia() {
         for (let ship of this.ships) {
-            let orientation_randomize = Math.floor(Math.random() * 2)
-            if (orientation_randomize === 0) {
+            let orientationRandomize = Math.floor(Math.random() * 2)
+            if (orientationRandomize === 0) {
                 ship.orientation = 'horizontal'
             } else {
                 ship.orientation = 'vertical'
